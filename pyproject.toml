@@ -8,6 +8,9 @@ authors = ["Vetrichelvan <pythonhub.py@gmail.com>"]
 python = "^3.10"
 
 [tool.poetry.dev-dependencies]
+black = {extras = ["d"], version = "^22.8.0"}
+pylint = "^2.15.3"
+pylint-quotes = "^0.2.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
