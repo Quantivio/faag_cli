@@ -34,7 +34,7 @@ extension-pkg-whitelist=
 # specified are enabled, while categories only check already-enabled messages.
 fail-on=
 
-# Specify a score threshold under which the program will exit with error.
+# Specify a score threshold to be exceeded before program exits with error.
 fail-under=10
 
 # Interpret the stdin as a python script, whose filename needs to be passed as
@@ -44,15 +44,13 @@ fail-under=10
 # Files or directories to be skipped. They should be base names, not paths.
 ignore=CVS
 
-# Add files or directories matching the regular expressions patterns to the
-# ignore-list. The regex matches against paths and can be in Posix or Windows
-# format. Because '\' represents the directory delimiter on Windows systems, it
-# can't be used as an escape character.
+# Add files or directories matching the regex patterns to the ignore-list. The
+# regex matches against paths and can be in Posix or Windows format.
 ignore-paths=
 
-# Files or directories matching the regular expression patterns are skipped.
-# The regex matches against base names, not paths. The default value ignores
-# Emacs file locks
+# Files or directories matching the regex patterns are skipped. The regex
+# matches against base names, not paths. The default value ignores Emacs file
+# locks
 ignore-patterns=^\.#
 
 # List of module names for which member attributes should not be checked
@@ -61,9 +59,10 @@ ignore-patterns=^\.#
 # supports qualified module names, as well as Unix pattern matching.
 ignored-modules=
 
+disable = C0115, C0116, C0114, R1705, R0801, E1101, W0603
 # Python code to execute, usually for sys.path manipulation such as
 # pygtk.require().
-#init-hook=
+init-hook="from pylint.config import find_pylintrc; import os, sys; sys.path.append(os.path.dirname(find_pylintrc()))"
 
 # Use multiple processes to speed up Pylint. Specifying 0 will auto-detect the
 # number of processors available to use, and will cap the count on Windows to
@@ -77,7 +76,7 @@ limit-inference-results=100
 
 # List of plugins (as comma separated values of python module names) to load,
 # usually to register additional checkers.
-load-plugins=
+load-plugins = pylint_quotes
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -309,7 +308,8 @@ callbacks=cb_,
 # not be used).
 dummy-variables-rgx=_+$|(_[a-zA-Z0-9_]*[a-zA-Z0-9]+?$)|dummy|^ignored_|^unused_
 
-# Argument names that match this expression will be ignored.
+# Argument names that match this expression will be ignored. Default to name
+# with leading underscore.
 ignored-argument-names=_.*|^ignored_|^unused_
 
 # Tells whether we should check for unused import in __init__ files.
@@ -336,7 +336,7 @@ indent-after-paren=4
 indent-string='    '
 
 # Maximum number of characters on a single line.
-max-line-length=100
+max-line-length=200
 
 # Maximum number of lines in a module.
 max-module-lines=1000
@@ -386,13 +386,6 @@ known-third-party=enchant
 preferred-modules=
 
 
-[METHOD_ARGS]
-
-# List of qualified names (i.e., library.method) which require a timeout
-# parameter e.g. 'requests.api.get,requests.api.post'
-timeout-methods=requests.api.delete,requests.api.get,requests.api.head,requests.api.options,requests.api.patch,requests.api.post,requests.api.put,requests.api.request
-
-
 [EXCEPTIONS]
 
 # Exceptions that will emit a warning when caught.
@@ -434,7 +427,7 @@ min-similarity-lines=4
 
 # List of regular expressions of class ancestor names to ignore when counting
 # public methods (see R0903)
-exclude-too-few-public-methods=
+exclude-too-few-public-methods=true
 
 # List of qualified class names to ignore when counting class parents (see
 # R0901)
@@ -468,7 +461,7 @@ max-returns=6
 max-statements=50
 
 # Minimum number of public methods for a class (see R0903).
-min-public-methods=2
+min-public-methods=0
 
 
 [STRING]
@@ -536,7 +529,7 @@ class-naming-style=PascalCase
 #class-rgx=
 
 # Naming style matching correct constant names.
-const-naming-style=UPPER_CASE
+const-naming-style=any
 
 # Regular expression matching correct constant names. Overrides const-naming-
 # style. If left empty, constant names will be checked with the set naming
@@ -616,3 +609,5 @@ variable-naming-style=snake_case
 # naming-style. If left empty, variable names will be checked with the set
 # naming style.
 #variable-rgx=
+
+string-quote=double
