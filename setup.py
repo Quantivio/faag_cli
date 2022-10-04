@@ -16,7 +16,7 @@ classifiers = [
 ]
 
 setup(
-    name="faag",
+    name="faag_cli",
     version="0.0.1",
     description="Flask/FastAPI Architecture Application Generator",
     long_description=long_description,

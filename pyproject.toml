@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "faag"
+name = "faag_cli"
 version = "0.0.1"
 description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhub.py@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["notion", "api", "wrapper"]
-packages = [{ include = "faag", from = "src" }]
+packages = [{ include = "faag_cli" }]
 repository = "https://github.com/pythonhubpy/FAAG"
 homepage = "https://github.com/pythonhubpy/FAAG"
 classifiers = [
@@ -19,6 +19,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
+Jinja2 = "^3.1.2"
 
 [tool.poetry.dev-dependencies]
 black = { extras = ["d"], version = "^22.8.0" }
