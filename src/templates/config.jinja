@@ -1,0 +1,47 @@
+import logging
+from functools import lru_cache
+from typing import Any
+
+from pydantic import BaseSettings
+
+from app.config.constants import Constants
+from app.utils.logger import logger
+
+# Add all your environment variables here
+
+class AppConfig(BaseSettings):
+    debug: bool = False
+    title: str
+    version: str
+    development_mode: str
+    allowed_hosts: list[str] = ["*"]
+    logging_level: int = logging.DEBUG
+
+
+    class Config:
+        env_file = ".env"
+        validate_assignment = True
+
+    @property
+    def fastapi_kwargs(self) -> dict[str, Any]:
+        return {
+            "debug": self.debug,
+            "title": self.title,
+            "version": self.version,
+            "openapi_url": self.openapi_url,
+            "docs_url": self.docs_url,
+            "redoc_url": self.redoc_url,
+        }
+
+
+app_config = AppConfig()
+
+
+@lru_cache()
+def generate_settings() -> AppConfig:
+    function_desc = "GenerateSettings"
+    logger.info(
+        function_name=function_desc,
+        message=f"Using {app_config.title} Environment Config",
+    )
+    return AppConfig()

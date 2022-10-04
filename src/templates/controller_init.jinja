@@ -1,0 +1,44 @@
+from fastapi import FastAPI
+from starlette import status
+from starlette.middleware.cors import CORSMiddleware
+from starlette.responses import JSONResponse
+
+from app.config.app_config import AppConfig, generate_settings
+from app.schemas import CommonResponseSchema
+from app.utils import logger
+from app.controller.sample_controller import sample_router
+from app.schema import CommonResponseSchema
+
+# Separate app is created for private endpoints that require authentication
+
+def create_pv_fast_app() -> FastAPI:
+    app_settings: AppConfig = generate_settings()
+    base_app = FastAPI(**app_settings.fastapi_kwargs)
+    base_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+    # Add your auth middlewares here so that you can use it only for specific routes that need auth. Your public routes will not be affected
+    # base_app.add_middleware(AuthMiddleware)
+    return base_app
+
+
+private_fast_app: FastAPI = create_pv_fast_app()
+private_fast_app.include_router(router=sample_router)
+
+@private_fast_app.get("/ping", tags=["Health Check"])
+def ping():
+    function_name = "Ping Private - Health Check"
+    logger.info(
+        message=f"Enter - {function_name}",
+        function_name=function_name,
+    )
+    return JSONResponse(
+        CommonResponseSchema(
+            message="Health check ping working for private", status="Ok"
+        ).dict(),
+        status_code=status.HTTP_200_OK,
+    )

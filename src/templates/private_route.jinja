@@ -1,0 +1,22 @@
+from fastapi import APIRouter
+from starlette.responses import JSONResponse
+from app.utils import logger
+from app.schema import CommonResponseSchema
+
+sample_router = APIRouter(prefix="/sample", tags=["Sample"])
+
+
+@sample_router.get("/ping", tags=["Health Check"])
+def ping():
+    function_name = "Ping Private Route- Health Check"
+    logger.info(
+        message=f"Enter - {function_name}",
+        function_name=function_name,
+    )
+    return JSONResponse(
+        CommonResponseSchema(
+            message="Health check ping working for private route", status="Ok"
+        ).dict(),
+        status_code=status.HTTP_200_OK,
+    )
+

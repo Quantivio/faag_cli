@@ -1,2 +1,2 @@
 # FAAG
-FastAPI/Flask project generator with best folder structure. (Fast/Flask Architecture App Generator)
+FastAPI/Flask project generator with the best folder structure. (Fast/Flask Architecture App Generator)
