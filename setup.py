@@ -27,7 +27,7 @@ setup(
     url="https://github.com/pythonhubpy/FAAG",
     packages=find_packages(exclude=["tests"]),
     install_package_data=True,
-    install_requires=["requests", "pydantic", "python-dotenv", "pytest", "pytest-cov"],
+    install_requires=["jinja2"],
     classifiers=classifiers,
     python_requires=">=3.7",
 )
