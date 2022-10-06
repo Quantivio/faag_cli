@@ -13,4 +13,16 @@ FOLDERS_FILES = {
         "__init__",
         "logger",
     ],
+    "model": [
+        "__init__",
+        "sample_model",
+    ],
+    "service": [
+        "__init__",
+        "sample_service",
+    ],
+    "database": [
+        "__init__",
+        "sample_database",
+    ],
 }
