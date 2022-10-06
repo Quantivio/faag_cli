@@ -25,16 +25,16 @@ def create_fast_app() -> FastAPI:
     return base_app
 
 
-app: FastAPI = create_fast_app()
+{{app_name}}: FastAPI = create_fast_app()
 
 # Add all your public routes here
-# app.include_router(
+# {{app_name}}.include_router(
 #     router=sample_public_router,
 #     prefix=f"{Constants.BASE_SLUG}/public",
 # )
 
 
-@app.get(f"{Constants.BASE_SLUG}/public/ping", tags=["Health Check"])
+@{{app_name}}.get(f"{Constants.BASE_SLUG}/public/ping", tags=["Health Check"])
 def ping():
     function_name = "Ping - Health Check"
     logger.info(
@@ -49,4 +49,4 @@ def ping():
     )
 
 
-app.mount(f"{Constants.BASE_SLUG}/private", private_fast_app)
+{{app_name}}.mount(f"{Constants.BASE_SLUG}/private", private_fast_app)
