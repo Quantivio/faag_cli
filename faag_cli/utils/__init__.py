@@ -1,1 +1,1 @@
-from faag_cli.utils.templates_loader import templates
+from faag_cli.utils.templates_loader import templates_environment
