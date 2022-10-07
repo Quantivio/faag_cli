@@ -19,7 +19,7 @@ pip install faag-cli
 # Usage
 
 ```bash
-Usage: faag.py [OPTIONS]
+Usage: faag [OPTIONS]
 
  Generate a new FastAPI/Flask project
  
