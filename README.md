@@ -19,16 +19,16 @@ pip install faag-cli
 # Usage
 
 ```bash
-Usage: faag.py [OPTIONS]                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                         
- Generate a new FastAPI/Flask project                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                         
+Usage: faag.py [OPTIONS]
+
+ Generate a new FastAPI/Flask project
+ 
 ╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --app                 -a       TEXT  Type of that should be generated. Default type is fast_api. Valid Options are: [fast_api, flask] [default: fast_api        | 
-│ --app-name            -an      TEXT  Name of the app [default: sampel_app]                                                                                      |                                                                                                      
-│ --install-completion                 Install completion for the current shell.                                                                                  |                                                                                                      
-│ --show-completion                    Show completion for the current shell, to copy it or customize the installation.                                           |                                                                                                      
-│ --help                               Show this message and exit.                                                                                                |                                                                                                      
+│ --app                 -a       TEXT  Type of that should be generated. Default type is fast_api. Valid Options are: [fast_api, flask] [default: fast_api        |
+│ --app-name            -an      TEXT  Name of the app [default: sampel_app]                                                                                      |
+│ --install-completion                 Install completion for the current shell.                                                                                  |
+│ --show-completion                    Show completion for the current shell, to copy it or customize the installation.                                           |
+│ --help                               Show this message and exit.                                                                                                |
 ╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
