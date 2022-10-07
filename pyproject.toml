@@ -5,7 +5,7 @@ description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhub.py@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["FastAPI", "Flask", "Pydantic", "SQLAlchemy", "Poetry", "Python", "CLI"]
+keywords = ["FastAPI", "Flask", "SQLAlchemy", "Poetry", "Python", "CLI"]
 packages = [{ include = "faag_cli" }]
 repository = "https://github.com/pythonhubpy/FAAG"
 homepage = "https://github.com/pythonhubpy/FAAG"
@@ -16,17 +16,20 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 
+[tool.poetry.scripts]
+faag = "faag_cli.faag:typer_app"
 
 [tool.poetry.dependencies]
 python = "^3.10"
 Jinja2 = "^3.1.2"
-typer = {extras = ["all"], version = "^0.6.1"}
-
-[tool.poetry.dev-dependencies]
-black = { extras = ["d"], version = "^22.8.0" }
+typer = { extras = ["all"], version = "^0.6.1" }
+black = {extras = ["d"], version = "^22.10.0"}
 pylint = "^2.15.3"
 pylint-quotes = "^0.2.3"
 pre-commit = "^2.20.0"
+
+[tool.poetry.dev-dependencies]
+
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,2 +1,3 @@
-# Faag_CLI
+# Faag-CLI
+
 **FastAPI/Flask project generator with the best folder structure.** (Fast/Flask Architecture App Generator)
