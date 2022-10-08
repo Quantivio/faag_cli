@@ -1,33 +1,42 @@
+import typer
+from rich import print as rprint
 from typer import Typer, Option
 
-from faag_cli.core import AppGenerator
+from faag_cli.core.app_generator import AppGenerator
 
 typer_app = Typer()
 
 
-@typer_app.command(
-    name="Faag_CLI",
-    help="Generate a new FastAPI/Flask project",
-)
-def generate(
+@typer_app.command(name="generate")
+def app_gen(
     app_type: str = Option(
-        "fast_api",
-        "--app",
-        "-a",
-        help="Type of that should be generated. Default type is fast_api. Valid Options are: [fast_api, flask]",
+        None,
+        "--app-type",
+        "-at",
+        help="Type of app to generate either flask or fast [default: fast]",
     ),
     app_name: str = Option(
-        "sampel_app",
+        "sample_app",
         "--app-name",
         "-an",
-        help="Name of the app",
+        help="Name of the app to generate [default: sample_app]",
     ),
-) -> None:
-    faag = AppGenerator()
-    faag.add_gitignore()
-    faag.generate_app(app_type, app_name)
-    faag.add_folders_files()
-    faag.add_packages()
+):
+    if not app_type:
+        rprint("No app type was provided. Falling back to default type [fast]")
+        AppGenerator.gen("fast_api", app_name)
+    if app_type and app_type.lower() not in ["flask", "fast"]:
+        rprint(
+            "[bold red]:police_car_light:Error: Invalid app type. Please provide valid apptype (fast, flask)[/bold red]"
+        )
+        typer.Exit(code=1)
+    if app_type and app_type.lower() in ["flask", "fast"]:
+        AppGenerator.gen(app_type, app_name)
+
+
+@typer_app.command(name="feature")
+def feature_gen():
+    rprint("Feature generation is currently under development. Coming soon")
 
 
 if __name__ == "__main__":
