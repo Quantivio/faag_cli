@@ -13,7 +13,6 @@ from faag_cli.utils import templates_environment
 class AppGenerator:
     @staticmethod
     def __generate_app(app_type, app_name: str) -> None:
-        FaagUtils.handle_app_folder_already_exists()
         if app_type.lower() == "flask":
             rprint(
                 "[bold green]🛠 Generating flask app is currently under development. Coming soon...[/bold green]"
@@ -43,13 +42,15 @@ class AppGenerator:
     @classmethod
     def gen(cls, app_type: str, app_name: str) -> None:
         with Progress() as progress:
-            app_generation = progress.add_task(description="Generating....", total=100)
-            sleep(1)
+            app_generation = progress.add_task(
+                description="⌛️Generating....", total=100
+            )
+            sleep(0.5)
             cls.__generate_app(app_type, app_name)
             progress.update(app_generation, advance=30)
-            sleep(1)
+            sleep(0.5)
             cls.__add_folders_files()
             progress.update(app_generation, advance=40)
-            sleep(1)
+            sleep(0.5)
             FaagUtils.add_gitignore()
             progress.update(app_generation, advance=30)
