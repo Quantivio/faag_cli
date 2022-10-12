@@ -3,7 +3,7 @@ from starlette import status
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
-from app.config import Constants, Events
+from app.config import Constants
 from app.config.app_config import AppConfig, generate_settings
 from app.controller import private_fast_app
 from app.schemas import CommonResponseSchema
@@ -21,7 +21,6 @@ def create_fast_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
-    base_app.add_event_handler("startup", events.create_start_app_handler())
     return base_app
 
 
