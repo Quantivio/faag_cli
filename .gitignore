@@ -137,3 +137,5 @@ http
 *.env.json
 **/.DS_Store
 **/__pycache__/
+
+app/
