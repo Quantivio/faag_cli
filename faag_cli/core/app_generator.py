@@ -13,8 +13,10 @@ class AppGenerator:
     def __generate_app(app_type, app_name: str) -> None:
         validated_app_name: str = FaagUtils.validate_app_name(app_name)
         os.mkdir("app")
-        app_template = templates_environment.get_template(f"{app_type}__init__.jinja")
-        app_template_rendered = app_template.render(app_name=validated_app_name)
+        app_template = templates_environment.get_template("__init__.jinja")
+        app_template_rendered = app_template.render(
+            app_name=validated_app_name, app_type=app_type
+        )
         with open("app/__init__.py", "w", encoding="UTF-8") as fast_api_init:
             fast_api_init.write(app_template_rendered)
 

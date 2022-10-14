@@ -1,0 +1,6 @@
+
+{% if app_type == "fast" %}
+{% include "fast__init__.jinja" %}
+{% else %}
+{% include "flask__init__.jinja" %}
+{% endif %}
