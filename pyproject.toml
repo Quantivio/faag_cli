@@ -22,7 +22,7 @@ faag = "faag_cli.faag:typer_app"
 [tool.poetry.dependencies]
 python = "^3.10"
 Jinja2 = "^3.1.2"
-typer = { extras = ["all"], version = "^0.6.1" }
+typer = { extras = ["all"], version = ">=0.6.1,<0.8.0" }
 
 [tool.poetry.dev-dependencies]
 pylint = "^2.15.5"
