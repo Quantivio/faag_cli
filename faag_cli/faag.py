@@ -1,9 +1,8 @@
 import typer
-from rich import print as rprint
-from typer import Typer, Option
-
 from faag_cli.core.app_generator import AppGenerator
-from faag_cli.utils import FaagUtils
+from faag_cli.utils.faag_utils import FaagUtils
+from rich import print as rprint
+from typer import Option, Typer
 
 typer_app = Typer()
 
@@ -25,9 +24,7 @@ def app_gen(
 ):
     FaagUtils.handle_app_folder_already_exists()
     if not app_type:
-        rprint(
-            "[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]"
-        )
+        rprint("[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]")
         AppGenerator.gen("fast", app_name)
     if app_type and app_type.lower() not in ["flask", "fast"]:
         rprint(
