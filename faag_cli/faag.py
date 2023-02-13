@@ -28,7 +28,8 @@ def app_gen(
         AppGenerator.gen("fast", app_name)
     if app_type and app_type.lower() not in ["flask", "fast"]:
         rprint(
-            "[bold red]:police_car_light:Error: Invalid app type. Please provide valid apptype (fast, flask)[/bold red]"
+            "[bold red]:police_car_light:Error: Invalid app type. Please provide valid app type (fast, flask)[/bold "
+            "red]"
         )
         typer.Exit(code=1)
     if app_type and app_type.lower() in ["flask", "fast"]:

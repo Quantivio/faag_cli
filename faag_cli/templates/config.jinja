@@ -13,6 +13,7 @@ class AppConfig(BaseSettings):
     debug: bool = False
     title: str
     version: str
+    description: str
     development_mode: str
     allowed_hosts: list[str] = ["*"]
     logging_level: int = logging.DEBUG
@@ -28,6 +29,7 @@ class AppConfig(BaseSettings):
             "debug": self.debug,
             "title": self.title,
             "version": self.version,
+            "description": self.description,
             "openapi_url": self.openapi_url,
             "docs_url": self.docs_url,
             "redoc_url": self.redoc_url,

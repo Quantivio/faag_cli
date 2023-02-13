@@ -49,7 +49,7 @@ target-version = "py311"
 fix = true
 show-source = true
 line-length = 120
-select=["E", "F"]
+select = ["E", "F", "N801", "N802", "N803", "N805", "N806"]
 
 [tool.ruff.flake8-quotes]
 inline-quotes = "double"
