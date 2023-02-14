@@ -25,5 +25,6 @@ jobs:
       - name: Install dependencies
         run: |
           poetry install
+          poetry shell
       - name: Run Ruff
         run: ruff check --format=github .
