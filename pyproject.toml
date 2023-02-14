@@ -20,16 +20,52 @@ classifiers = [
 faag = "faag_cli.faag:typer_app"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 Jinja2 = "^3.1.2"
 typer = { extras = ["all"], version = ">=0.6.1,<0.8.0" }
+mypy = "^1.0.0"
 
-[tool.poetry.dev-dependencies]
-pylint = "^2.15.9"
-pylint-quotes = "^0.2.3"
-pre-commit = "^2.21.0"
-black = {extras = ["d"], version = "^22.12.0"}
+[tool.poetry.group.dev.dependencies]
+black = { extras = ["d"], version = "^23.1.0" }
+pre-commit = "^3.0.4"
+ruff = "^0.0.245"
+isort = "^5.12.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+known_third_party = ["faag_cli"]
+
+[tool.ruff]
+src = ["."]
+target-version = "py311"
+fix = true
+show-source = true
+line-length = 120
+select = ["E", "F", "N801", "N802", "N803", "N805", "N806"]
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "double"
+multiline-quotes = "double"
+docstring-quotes = "double"
+
+
+[tool.ruff.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.flake8-type-checking]
+strict = true
+
+[tool.ruff.isort]
+combine-as-imports = true
+known-third-party = ["faag_cli"]
+
+[tool.mypy]
+strict = true

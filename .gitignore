@@ -139,3 +139,5 @@ http
 **/__pycache__/
 
 app/
+
+.ruff_cache

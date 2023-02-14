@@ -1,11 +1,10 @@
 import os
 from time import sleep
 
+from faag_cli.constants.constants import FOLDERS_FILES
+from faag_cli.utils.faag_utils import FaagUtils
+from faag_cli.utils.templates_loader import templates_environment
 from rich.progress import Progress
-
-from faag_cli.constants import FOLDERS_FILES
-from faag_cli.utils import FaagUtils
-from faag_cli.utils import templates_environment
 
 
 class AppGenerator:
@@ -14,9 +13,7 @@ class AppGenerator:
         validated_app_name: str = FaagUtils.validate_app_name(app_name)
         os.mkdir("app")
         app_template = templates_environment.get_template("__init__.jinja")
-        app_template_rendered = app_template.render(
-            app_name=validated_app_name, app_type=app_type
-        )
+        app_template_rendered = app_template.render(app_name=validated_app_name, app_type=app_type)
         with open("app/__init__.py", "w", encoding="UTF-8") as fast_api_init:
             fast_api_init.write(app_template_rendered)
 
@@ -27,9 +24,7 @@ class AppGenerator:
             for file in files:
                 with open(f"app/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
                     if file.startswith("__"):
-                        template = templates_environment.get_template(
-                            f"{folder + file}.jinja"
-                        )
+                        template = templates_environment.get_template(f"{folder + file}.jinja")
                     else:
                         template = templates_environment.get_template(f"{file}.jinja")
                     rendered_template = template.render()
@@ -38,9 +33,7 @@ class AppGenerator:
     @classmethod
     def gen(cls, app_type: str, app_name: str) -> None:
         with Progress() as progress:
-            app_generation = progress.add_task(
-                description="⌛️Generating....", total=100
-            )
+            app_generation = progress.add_task(description="⌛️Generating....", total=100)
             sleep(0.5)
             cls.__generate_app(app_type, app_name)
             progress.update(app_generation, advance=30)
