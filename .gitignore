@@ -141,3 +141,4 @@ http
 app/
 
 .ruff_cache
+.mypy_cache

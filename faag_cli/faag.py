@@ -21,7 +21,7 @@ def app_gen(
         "-an",
         help="Name of the app to generate [default: sample_app]",
     ),
-):
+) -> None:
     FaagUtils.handle_app_folder_already_exists()
     if not app_type:
         rprint("[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]")
@@ -37,7 +37,7 @@ def app_gen(
 
 
 @typer_app.command(name="feature")
-def feature_gen():
+def feature_gen() -> None:
     rprint("Feature generation is currently under development. Coming soon")
 
 
