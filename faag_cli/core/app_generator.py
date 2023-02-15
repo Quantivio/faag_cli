@@ -9,7 +9,7 @@ from rich.progress import Progress
 
 class AppGenerator:
     @staticmethod
-    def __generate_app(app_type, app_name: str) -> None:
+    def __generate_app(app_type: str, app_name: str) -> None:
         validated_app_name: str = FaagUtils.validate_app_name(app_name)
         os.mkdir("app")
         app_template = templates_environment.get_template("__init__.jinja")
@@ -18,7 +18,7 @@ class AppGenerator:
             fast_api_init.write(app_template_rendered)
 
     @staticmethod
-    def __add_folders_files():
+    def __add_folders_files() -> None:
         for folder, files in FOLDERS_FILES.items():
             os.mkdir(f"app/{folder}")
             for file in files:
