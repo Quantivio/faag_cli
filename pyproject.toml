@@ -23,15 +23,14 @@ faag = "faag_cli.faag:typer_app"
 python = "^3.9"
 Jinja2 = "^3.1.2"
 typer = { extras = ["all"], version = ">=0.6.1,<0.8.0" }
-mypy = "^1.0.0"
 
 [tool.poetry.group.dev.dependencies]
 black = { extras = ["d"], version = "^23.1.0" }
-pre-commit = "^3.0.4"
-ruff = "^0.0.245"
+pre-commit = "^3.1.1"
+ruff = "^0.0.254"
 isort = "^5.12.0"
-mypy = "^1.0.0"
-types-setuptools = "^67.2.0.1"
+mypy = "^1.1.1"
+types-setuptools = "^67.6.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
