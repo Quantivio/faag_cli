@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "faag_cli"
-version = "0.0.1-dev"
+version = "0.0.1"
 description = "Flask/FastAPI Architecture Application Generator"
-authors = ["Vetrichelvan <pythonhub.py@gmail.com>"]
+authors = ["Vetrichelvan <pythonhubdev@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["FastAPI", "Flask", "SQLAlchemy", "Poetry", "Python", "CLI"]
-packages = [{ include = "faag_cli" }]
-repository = "https://github.com/pythonhubpy/FAAG"
-homepage = "https://github.com/pythonhubpy/FAAG"
+packages = [{ include = "faag_cli"}]
+repository = "https://github.com/pythonhubdev/faag_cli"
+homepage = "https://github.com/pythonhubdev/faag_cli"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
