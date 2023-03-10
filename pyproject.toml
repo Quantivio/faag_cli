@@ -6,7 +6,7 @@ authors = ["Vetrichelvan <pythonhubdev@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["FastAPI", "Flask", "SQLAlchemy", "Poetry", "Python", "CLI"]
-packages = [{ include = "faag_cli"}]
+packages = [{ include = "faag_cli" }]
 repository = "https://github.com/pythonhubdev/faag_cli"
 homepage = "https://github.com/pythonhubdev/faag_cli"
 classifiers = [
@@ -33,7 +33,12 @@ mypy = "^1.1.1"
 types-setuptools = "^67.6.0.0"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = [
+    "poetry-core>=1.0.0",
+    "fastapi",
+    "flask",
+    "python-dotenv"
+]
 build-backend = "poetry.core.masonry.api"
 
 
