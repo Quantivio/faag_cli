@@ -1,4 +1,5 @@
 import typer
+from faag_cli.constants.app_types import AppTypes
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
 from rich import print as rprint
@@ -10,7 +11,7 @@ typer_app = Typer()
 @typer_app.command(name="generate")
 def app_gen(
     app_type: str = Option(
-        None,
+        AppTypes.FAST,
         "--app-type",
         "-at",
         help="Type of app to generate either flask or fast [default: fast]",

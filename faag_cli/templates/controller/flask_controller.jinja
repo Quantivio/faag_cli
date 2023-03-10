@@ -1,9 +1,9 @@
 from flask import Blueprint
 
-sample_blueprint = Blueprint('main', __name__)
+sample_router = Blueprint('main', __name__)
 
 
-@sample_blueprint.route('/', methods=['GET'])
+@sample_router.route('/', methods=['GET'])
 def index():
    function_name = "Ping Private Route- Health Check"
     logger.info(
