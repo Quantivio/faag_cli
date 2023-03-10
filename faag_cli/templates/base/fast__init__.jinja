@@ -12,7 +12,6 @@ from app.utils.logger import logger
 
 def create_fast_app() -> FastAPI:
     app_settings: AppConfig = generate_settings()
-    events = Events(app_settings)
     base_app = FastAPI(**app_settings.fastapi_kwargs)
     base_app.add_middleware(
         CORSMiddleware,

@@ -2,6 +2,7 @@ FOLDERS_FILES = {
     "config": [
         "__init__",
         "constants",
+        "config",
     ],
     "connection": [
         "__init__",
@@ -21,8 +22,8 @@ FOLDERS_FILES = {
         "__init__",
         "sample_service",
     ],
-    "database": [
+    "dao": [
         "__init__",
-        "sample_database",
+        "sample_dao",
     ],
 }
