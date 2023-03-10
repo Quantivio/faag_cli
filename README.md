@@ -2,8 +2,8 @@
 
 **FastAPI/Flask project generator with the best folder structure.** (Fast/Flask Architecture App Generator)
 Flask / FastAPI app generator with a maintainable architecture and sample codes for the best practices.
-Currently supports generation of FastAPI apps only. Flask support is coming soon. Currently in `pre-release`. Feel free
-to raise suggesstions and issues. This package is made with [Typer](https://typer.tiangolo.com/).
+Currently, supports generation of FastAPI apps only. Flask support is coming soon. Currently, in `pre-release`. Feel free
+to raise suggestions and issues. This package is made with [Typer](https://typer.tiangolo.com/).
 
 ## Installation
 
@@ -59,7 +59,7 @@ Usage: faag [OPTIONS]
 > ## Setup Pre-commit hooks
 > 1. Install pre-commit hooks `pre-commit install`
 > 2. Migrate pre-commit configs `pre-commit migrate-config`
-> 3. Incase of error run `git config --global --unset-all core.hooksPath` or `git config --unset-all core.hooksPath`
+> 3. In case of error run `git config --global --unset-all core.hooksPath` or `git config --unset-all core.hooksPath`
 
 ## Contribution Guidelines
 

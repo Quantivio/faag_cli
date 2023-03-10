@@ -1,4 +1,4 @@
-Hello Devs👋🏻, Thankyou for speding your valuable time to contribute to **Faag_CLI**.
+Hello Devs👋🏻, Thankyou for spending your valuable time to contribute to **Faag_CLI**.
 All PRs, contributions, reviews and suggestions are welcome.
 Please follow the guidelines below to contribute to this project.
 
@@ -24,7 +24,7 @@ You can also use the custom template to create an issue if the above templates d
 > ## Setup Pre-commit hooks
 > 1. Install pre-commit hooks `pre-commit install`
 > 2. Migrate pre-commit configs `pre-commit migrate-config`
-> 3. Incase of error run `git config --global --unset-all core.hooksPath` or `git config --unset-all core.hooksPath`
+> 3. In case of error run `git config --global --unset-all core.hooksPath` or `git config --unset-all core.hooksPath`
 
 # Creating a Pull Request
 
