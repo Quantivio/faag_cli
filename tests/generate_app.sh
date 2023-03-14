@@ -1,4 +1,4 @@
-pip install -e .
+#pip install -e .
 
 mkdir test_directory && cd test_directory
 
