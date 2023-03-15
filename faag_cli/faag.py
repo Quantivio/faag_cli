@@ -16,17 +16,20 @@ typer_app = Typer()  # Create a Typer instance
 def app_gen(
     app_type: AppTypes = Option(
         AppTypes.FAST.value,
-        "--app-type",
-        "-at",
+        "--type",
+        "t",
         help="Type of app to generate either flask or fast [default: fast]",
     ),
     app_name: str = Option(
         "sample_app",
-        "--app-name",
-        "-an",
+        "--name",
+        "-n",
         help="Name of the app to generate [default: sample_app]",
     ),
 ) -> None:
+    """
+    FastAPI/Flask project generator with the best folder structure. Generate a new app using faag cli.
+    """
     FaagUtils.handle_app_folder_already_exists()  # Check if the app folder already exists
     app_type = app_type.value.lower()  # Get the app type
     if not app_type:
