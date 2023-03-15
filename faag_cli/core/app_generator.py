@@ -32,9 +32,10 @@ class AppGenerator:
             fast_api_init.write(app_template_rendered)
 
     @staticmethod
-    def __add_folders_files() -> None:
+    def __add_folders_files(app_type: str) -> None:
         """
         This method adds the folders and files to the app folder based on the FOLDERS_FILES structure.
+        :param app_type: The type of the app to be generated, either fast or flask.
         :return:
         """
         for folder, files in FOLDERS_FILES.items():
@@ -45,7 +46,7 @@ class AppGenerator:
                         template = templates_environment.get_template(f"/{folder}/{folder + file}.jinja")
                     else:
                         template = templates_environment.get_template(f"/{folder}/{file}.jinja")
-                    rendered_template = template.render()
+                    rendered_template = template.render(app_type=app_type)
                     gen_file.write(rendered_template)
 
     @classmethod
@@ -59,7 +60,7 @@ class AppGenerator:
             cls.__generate_app(app_type, app_name)
             progress.update(app_generation, advance=30)
             sleep(0.5)
-            cls.__add_folders_files()
+            cls.__add_folders_files(app_type)
             progress.update(app_generation, advance=40)
             sleep(0.5)
             FaagUtils.add_gitignore()
