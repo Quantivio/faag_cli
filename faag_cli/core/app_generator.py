@@ -4,10 +4,11 @@ Description: This file contains the AppGenerator class which is responsible for 
 import os
 from time import sleep
 
+from rich.progress import Progress
+
 from faag_cli.constants.constants import FOLDERS_FILES
 from faag_cli.utils.faag_utils import FaagUtils
 from faag_cli.utils.templates_loader import templates_environment
-from rich.progress import Progress
 
 
 class AppGenerator:

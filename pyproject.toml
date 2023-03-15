@@ -47,7 +47,7 @@ line-length = 120
 
 [tool.isort]
 profile = "black"
-known_third_party = ["faag_cli"]
+
 
 [tool.ruff]
 src = ["."]
@@ -71,7 +71,7 @@ strict = true
 
 [tool.ruff.isort]
 combine-as-imports = true
-known-third-party = ["faag_cli"]
+
 
 [tool.mypy]
 strict = true

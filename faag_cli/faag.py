@@ -3,22 +3,24 @@ Description: This file contains the main entry point for the faag cli.
 """
 
 import typer
+from rich import print as rprint
+from typer import Option, Typer
+
 from faag_cli.constants.app_types import AppTypes
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
-from rich import print as rprint
-from typer import Option, Typer
 
 typer_app = Typer()  # Create a Typer instance
 
 
 @typer_app.command(name="generate")
 def app_gen(
-    app_type: AppTypes = Option(
+    app: AppTypes = Option(
         AppTypes.FAST.value,
         "--type",
-        "t",
+        "-t",
         help="Type of app to generate either flask or fast [default: fast]",
+        show_choices=True,
     ),
     app_name: str = Option(
         "sample_app",
@@ -31,7 +33,7 @@ def app_gen(
     FastAPI/Flask project generator with the best folder structure. Generate a new app using faag cli.
     """
     FaagUtils.handle_app_folder_already_exists()  # Check if the app folder already exists
-    app_type = app_type.value.lower()  # Get the app type
+    app_type = app.value.lower()  # Get the app type
     if not app_type:
         rprint("[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]")
         AppGenerator.gen("fast", app_name)

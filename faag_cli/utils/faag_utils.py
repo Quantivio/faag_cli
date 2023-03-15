@@ -8,8 +8,9 @@ import sys
 from re import Pattern
 from typing import Any
 
-from faag_cli.utils.templates_loader import templates_environment
 from rich import print as rprint
+
+from faag_cli.utils.templates_loader import templates_environment
 
 
 class FaagUtils:
