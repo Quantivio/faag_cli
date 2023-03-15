@@ -1,3 +1,12 @@
+"""
+Description: This file contains the constants that will be used in the project.
+"""
+
+"""
+FOLDERS_FILES is a dictionary that contains the folders and files that will be created.
+Acts as a template for the project structure.
+"""
+
 FOLDERS_FILES = {
     "config": [
         "__init__",

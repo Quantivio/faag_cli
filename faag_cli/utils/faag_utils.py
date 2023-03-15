@@ -1,3 +1,7 @@
+"""
+Description: This file contains the FaagUtils class which contains utility methods for the faag cli.
+"""
+
 import os
 import re
 import sys
@@ -11,6 +15,11 @@ from rich import print as rprint
 class FaagUtils:
     @staticmethod
     def add_gitignore() -> None:
+        """
+        This method adds a .gitignore file to the project.
+        In future this function can be modified to add more config files like .env or .flaskenv to the project.
+        :return:
+        """
         gitignore_template = templates_environment.get_template("gitignore.jinja")
         gitignore_template_rendered = gitignore_template.render()
         with open(".gitignore", "w", encoding="UTF-8") as gitignore:
@@ -18,6 +27,10 @@ class FaagUtils:
 
     @staticmethod
     def handle_app_folder_already_exists() -> None:
+        """
+        This method checks if the app folder already exists and exits the program if it does.
+        :return:
+        """
         if os.path.exists("app"):
             rprint(
                 "[bold red]:police_car_light:Error: App already exists. Please delete the app folder and try again["
@@ -27,6 +40,13 @@ class FaagUtils:
 
     @staticmethod
     def validate_app_name(app_name: str) -> str:
+        """
+        This method validates the app name and returns a validated app name.
+        It replaces all hyphens with underscores.
+
+        :param app_name: The name of the app to be generated.
+        :return: A validated app name that is safe to use.
+        """
         app_name_pattern: Pattern[Any] = re.compile(r".*[@!#$%^&*()<>?/\|}{~:].*")
         if app_name_pattern.match(app_name):
             rprint("[bold red]:police_car_light:Error: App name should not contain special characters[/bold red]")

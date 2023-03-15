@@ -1,3 +1,6 @@
+"""
+Description: This file contains the AppGenerator class which is responsible for generating the app.
+"""
 import os
 from time import sleep
 
@@ -10,8 +13,19 @@ from rich.progress import Progress
 class AppGenerator:
     @staticmethod
     def __generate_app(app_type: str, app_name: str) -> None:
+        """
+        :param app_type: The type of the app to be generated, either fast or flask.
+        :param app_name: The name of the project or app to be generated.
+        :return: None
+        """
+
+        # Validate the app name
         validated_app_name: str = FaagUtils.validate_app_name(app_name)
+
+        # Create the app folder
         os.mkdir("app")
+
+        # Generate the base __init__.py file for respective app via the templates loader
         app_template = templates_environment.get_template("/base/__init__.jinja")
         app_template_rendered = app_template.render(app_name=validated_app_name, app_type=app_type)
         with open("app/__init__.py", "w", encoding="UTF-8") as fast_api_init:
@@ -19,6 +33,11 @@ class AppGenerator:
 
     @staticmethod
     def __add_folders_files(app_type: str) -> None:
+        """
+        This method adds the folders and files to the app folder based on the FOLDERS_FILES structure.
+        :param app_type: The type of the app to be generated, either fast or flask.
+        :return:
+        """
         for folder, files in FOLDERS_FILES.items():
             os.mkdir(f"app/{folder}")
             for file in files:
@@ -32,7 +51,10 @@ class AppGenerator:
 
     @classmethod
     def gen(cls, app_type: str, app_name: str) -> None:
+        # Progress bar for user experience
         with Progress() as progress:
+            # Since app doesn't does so much heavy lifting, we can use a simple progress bar and sleep for 0.5
+            # seconds to simulate the progress.
             app_generation = progress.add_task(description="⌛️Generating....", total=100)
             sleep(0.5)
             cls.__generate_app(app_type, app_name)
