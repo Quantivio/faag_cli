@@ -3,8 +3,7 @@ from starlette import status
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
-from app.config import Constants
-from app.config.app_config import AppConfig, generate_settings
+from app.config import AppConfig, generate_settings, Constants
 from app.controller import private_fast_app
 from app.schemas import CommonResponseSchema
 from app.utils.logger import logger
