@@ -1,2 +1,0 @@
-class Constants:
-    BASE_SLUG = "/your_app_name/api/v1"
