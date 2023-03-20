@@ -2,8 +2,7 @@ from fastapi import APIRouter
 from starlette import status
 from starlette.responses import JSONResponse
 
-from app.schemas import CommonResponseSchema
-from app.schemas import DataResponseSchema, UserResponseSchema
+from app.schemas import CommonResponseSchema, DataResponseSchema, UserResponseSchema
 from app.service import SampleService
 from app.utils import logger
 
@@ -18,9 +17,7 @@ def ping():
         function_name=function_name,
     )
     return JSONResponse(
-        CommonResponseSchema(
-            message="Health check ping working for private route", status="Ok"
-        ).dict(),
+        CommonResponseSchema(message="Health check ping working for private route", status="Ok").dict(),
         status_code=status.HTTP_200_OK,
     )
 
@@ -39,9 +36,7 @@ def get_all_users():
             function_name=function_name,
         )
         return JSONResponse(
-            DataResponseSchema(
-                message="Users fetched successfully", status="Ok", data=users
-            ).dict(),
+            DataResponseSchema(message="Users fetched successfully", status="Ok", data=users).dict(),
             status_code=status.HTTP_200_OK,
         )
     except Exception as exception:
@@ -50,8 +45,6 @@ def get_all_users():
             function_name=function_name,
         )
         return JSONResponse(
-            CommonResponseSchema(
-                message="Health check ping working for private route", status="Ok"
-            ).dict(),
+            CommonResponseSchema(message="Health check ping working for private route", status="Ok").dict(),
             status_code=status.HTTP_200_OK,
         )

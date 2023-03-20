@@ -1,6 +1,5 @@
-from app.schemas import UserResponseSchema
-
 from app.dao import SampleDao
+from app.schemas import UserResponseSchema
 
 
 class SampleService:

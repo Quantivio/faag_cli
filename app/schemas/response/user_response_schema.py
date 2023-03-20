@@ -1,0 +1,10 @@
+from pydantic import BaseModel
+
+
+class UserResponseSchema(BaseModel):
+    unique_id: int
+    name: str
+    email: str
+
+    class Config:
+        orm_mode = True
