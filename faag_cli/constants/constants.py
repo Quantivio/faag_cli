@@ -20,6 +20,14 @@ FOLDERS_FILES = {
         "__init__",
         "sample_controller",
     ],
+    "schemas": [
+        "__init__",
+    ],
+    "request": [],
+    "response": [
+        "common_response_schema",
+        "user_response_schema",
+    ],
     "utils": [
         "__init__",
         "logger",

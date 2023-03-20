@@ -39,16 +39,31 @@ class AppGenerator:
         :param app_type: The type of the app to be generated, either fast or flask.
         :return:
         """
+        if not os.path.exists("app/schemas"):
+            os.mkdir("app/schemas")
+
         for folder, files in FOLDERS_FILES.items():
-            os.mkdir(f"app/{folder}")
-            for file in files:
-                with open(f"app/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
-                    if file.startswith("__"):
-                        template = templates_environment.get_template(f"/{folder}/{folder + file}.jinja")
-                    else:
-                        template = templates_environment.get_template(f"/{folder}/{file}.jinja")
-                    rendered_template = template.render(app_type=app_type)
-                    gen_file.write(rendered_template)
+            if folder in ["response", "request"]:
+                os.mkdir(f"app/schemas/{folder}")
+                for file in files:
+                    with open(f"app/schemas/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
+                        if file.startswith("__"):
+                            template = templates_environment.get_template(f"/schemas/{folder}/{folder + file}.jinja")
+                        else:
+                            template = templates_environment.get_template(f"/schemas/{folder}/{file}.jinja")
+                        rendered_template = template.render(app_type=app_type)
+                        gen_file.write(rendered_template)
+            else:
+                if folder != "schemas":
+                    os.mkdir(f"app/{folder}")
+                for file in files:
+                    with open(f"app/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
+                        if file.startswith("__"):
+                            template = templates_environment.get_template(f"/{folder}/{folder + file}.jinja")
+                        else:
+                            template = templates_environment.get_template(f"/{folder}/{file}.jinja")
+                        rendered_template = template.render(app_type=app_type)
+                        gen_file.write(rendered_template)
 
     @staticmethod
     def setup_poetry(app_name: str, app_type: str) -> None:
