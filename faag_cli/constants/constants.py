@@ -18,6 +18,7 @@ FOLDERS_FILES = {
     ],
     "controller": [
         "__init__",
+        "sample_controller",
     ],
     "utils": [
         "__init__",

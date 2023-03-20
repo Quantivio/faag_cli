@@ -1,1 +1,12 @@
-# Your services goes here
+from app.dao import SampleDao
+from app.schema.user_schema import UserSchema
+
+class SampleService:
+    def __init__(self):
+        self.sampleDao = SampleDao()
+
+    def get_all_users(self) -> list[UserSchema]:
+        raw_users = self.sampleDao.get_all_users()
+        users: list[UserSchema] = [UserSchema.parse_obj(user) for user in raw_users]
+        return users
+

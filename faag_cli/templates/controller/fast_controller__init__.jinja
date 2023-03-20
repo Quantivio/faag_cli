@@ -1,13 +1,12 @@
+from app.controller.private_controller import private_router
+from app.schema import CommonResponseSchema
 from fastapi import FastAPI
 from starlette import status
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import JSONResponse
 
-from app.config.app_config import AppConfig, generate_settings
-from app.schemas import CommonResponseSchema
+from app.config.config import AppConfig, generate_settings
 from app.utils import logger
-from app.controller.private_controller import private_router
-from app.schema import CommonResponseSchema
 
 """
 Add all your public controllers here like below
@@ -17,6 +16,8 @@ This will be helpful to add the public routes to the public app
 """
 
 # Separate app is created for private endpoints that require authentication
+
+
 
 def create_pv_fast_app() -> FastAPI:
     app_settings: AppConfig = generate_settings()

@@ -50,6 +50,23 @@ class AppGenerator:
                     rendered_template = template.render(app_type=app_type)
                     gen_file.write(rendered_template)
 
+    @staticmethod
+    def setup_poetry(app_name: str, app_type: str) -> None:
+        """
+        This method sets up poetry for the project.
+        :return: None
+        """
+        os.system(f"poetry init -n {app_name} -q")
+        os.system("poetry add pydantic")
+        os.system("poetry add python-dotenv")
+        os.system("poetry add ruff")
+        os.system("poetry add pytest")
+        if app_type == "fast":
+            os.system("poetry add fastapi")
+            os.system("poetry add uvicorn")
+        else:
+            os.system("poetry add flask")
+
     @classmethod
     def gen(cls, app_type: str, app_name: str) -> None:
         # Progress bar for user experience
@@ -59,10 +76,13 @@ class AppGenerator:
             app_generation = progress.add_task(description="⌛️Generating....", total=100)
             sleep(0.5)
             cls.__generate_app(app_type, app_name)
-            progress.update(app_generation, advance=30)
+            progress.update(app_generation, advance=20)
             sleep(0.5)
             cls.__add_folders_files(app_type)
-            progress.update(app_generation, advance=40)
+            progress.update(app_generation, advance=20)
             sleep(0.5)
             FaagUtils.add_gitignore()
-            progress.update(app_generation, advance=30)
+            progress.update(app_generation, advance=20)
+            sleep(0.5)
+            cls.setup_poetry(app_name, app_type)
+            progress.update(app_generation, advance=40)
