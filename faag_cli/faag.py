@@ -1,14 +1,14 @@
 """
-Description: This file contains the main entry point for the faag cli.
+Description: This file contains the main entry point for the faag_cli cli.
 """
 
 import typer
 from rich import print as rprint
 from typer import Option, Typer
 
-from faag.constants.app_types import AppTypes
-from faag.core.app_generator import AppGenerator
-from faag.utils.faag_utils import FaagUtils
+from faag_cli.constants.app_types import AppTypes
+from faag_cli.core.app_generator import AppGenerator
+from faag_cli.utils.faag_utils import FaagUtils
 
 typer_app = Typer()  # Create a Typer instance
 
@@ -32,9 +32,9 @@ def app_gen(
     ),
 ) -> None:
     """
-    FastAPI/Flask project generator with the best folder structure. Generate a new app using faag cli.
+    FastAPI/Flask project generator with the best folder structure. Generate a new app using faag_cli cli.
     """
-    FaagUtils.handle_app_folder_already_exists()  # Check if the app folder already exists
+    FaagUtils.handle_app_folder_already_exists(app_name)  # Check if the app folder already exists
     app_type = app.value.lower()  # Get the app type
     if not app_type:
         rprint("[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]")

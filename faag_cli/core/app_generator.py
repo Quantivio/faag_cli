@@ -6,9 +6,9 @@ from time import sleep
 
 from rich.progress import Progress
 
-from faag.constants.constants import FOLDERS_FILES
-from faag.utils.faag_utils import FaagUtils
-from faag.utils.templates_loader import templates_environment
+from faag_cli.constants.constants import FOLDERS_FILES
+from faag_cli.utils.faag_utils import FaagUtils
+from faag_cli.utils.templates_loader import templates_environment
 
 
 class AppGenerator:
@@ -24,29 +24,29 @@ class AppGenerator:
         validated_app_name: str = FaagUtils.validate_app_name(app_name)
 
         # Create the app folder
-        os.mkdir("app")
+        os.mkdir(f"{app_name}")
 
         # Generate the base __init__.py file for respective app via the templates loader
         app_template = templates_environment.get_template("/base/__init__.jinja")
         app_template_rendered = app_template.render(app_name=validated_app_name, app_type=app_type)
-        with open("app/__init__.py", "w", encoding="UTF-8") as fast_api_init:
+        with open(f"{app_name}/__init__.py", "w", encoding="UTF-8") as fast_api_init:
             fast_api_init.write(app_template_rendered)
 
     @staticmethod
-    def __add_folders_files(app_type: str) -> None:
+    def __add_folders_files(app_name: str, app_type: str) -> None:
         """
         This method adds the folders and files to the app folder based on the FOLDERS_FILES structure.
         :param app_type: The type of the app to be generated, either fast or flask.
         :return:
         """
-        if not os.path.exists("app/schemas"):
-            os.mkdir("app/schemas")
+        if not os.path.exists(f"{app_name}/schemas"):
+            os.mkdir(f"{app_name}/schemas")
 
         for folder, files in FOLDERS_FILES.items():
             if folder in ["response", "request"]:
-                os.mkdir(f"app/schemas/{folder}")
+                os.mkdir(f"{app_name}/schemas/{folder}")
                 for file in files:
-                    with open(f"app/schemas/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
+                    with open(f"{app_name}/schemas/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
                         if file.startswith("__"):
                             template = templates_environment.get_template(f"/schemas/{folder}/{folder + file}.jinja")
                         else:
@@ -55,9 +55,9 @@ class AppGenerator:
                         gen_file.write(rendered_template)
             else:
                 if folder != "schemas":
-                    os.mkdir(f"app/{folder}")
+                    os.mkdir(f"{app_name}/{folder}")
                 for file in files:
-                    with open(f"app/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
+                    with open(f"{app_name}/{folder}/{file}.py", "w", encoding="UTF-8") as gen_file:
                         if file.startswith("__"):
                             template = templates_environment.get_template(f"/{folder}/{folder + file}.jinja")
                         else:
@@ -71,6 +71,8 @@ class AppGenerator:
         This method sets up poetry for the project.
         :return: None
         """
+        os.system(f"cd {app_name}")
+        os.system("poetry config virtualenvs.in-project true")
         os.system(f"poetry init -n {app_name} -q")
         os.system("poetry add pydantic")
         os.system("poetry add python-dotenv")
@@ -93,10 +95,10 @@ class AppGenerator:
             cls.__generate_app(app_type, app_name)
             progress.update(app_generation, advance=20)
             sleep(0.5)
-            cls.__add_folders_files(app_type)
+            cls.__add_folders_files(app_name, app_type)
             progress.update(app_generation, advance=20)
             sleep(0.5)
-            FaagUtils.add_gitignore()
+            FaagUtils.add_gitignore(app_name)
             progress.update(app_generation, advance=20)
             sleep(0.5)
             cls.setup_poetry(app_name, app_type)

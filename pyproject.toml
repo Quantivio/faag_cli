@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "faag"
-version = "0.0.1-dev"
+name = "faag_cli"
+version = "0.0.3-dev"
 description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhubdev@gmail.com>", "Devzone <devzonehq@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 keywords = ["FastAPI", "Flask", "SQLAlchemy", "Poetry", "Python", "CLI", "API", "Application", "Generator", "Architecture", "Faag"]
-packages = [{ include = "faag" }]
+packages = [{ include = "faag_cli" }]
 repository = "https://github.com/DevzoneCommunity/faag_cli"
 homepage = "https://github.com/DevzoneCommunity/faag_cli"
 classifiers = [
@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 [tool.poetry.scripts]
-faag = "faag.faag:typer_app"
+faag = "faag_cli.faag:typer_app"
 
 [tool.poetry.dependencies]
 python = "^3.9"

@@ -1,5 +1,5 @@
 """
-Description: This file contains the FaagUtils class which contains utility methods for the faag cli.
+Description: This file contains the FaagUtils class which contains utility methods for the faag_cli cli.
 """
 
 import os
@@ -10,12 +10,12 @@ from typing import Any
 
 from rich import print as rprint
 
-from faag.utils.templates_loader import templates_environment
+from faag_cli.utils.templates_loader import templates_environment
 
 
 class FaagUtils:
     @staticmethod
-    def add_gitignore() -> None:
+    def add_gitignore(app_name: str) -> None:
         """
         This method adds a .gitignore file to the project.
         In future this function can be modified to add more config files like .env or .flaskenv to the project.
@@ -23,16 +23,16 @@ class FaagUtils:
         """
         gitignore_template = templates_environment.get_template("gitignore.jinja")
         gitignore_template_rendered = gitignore_template.render()
-        with open(".gitignore", "w", encoding="UTF-8") as gitignore:
+        with open(f"{app_name}/.gitignore", "w", encoding="UTF-8") as gitignore:
             gitignore.write(gitignore_template_rendered)
 
     @staticmethod
-    def handle_app_folder_already_exists() -> None:
+    def handle_app_folder_already_exists(app_name: str) -> None:
         """
         This method checks if the app folder already exists and exits the program if it does.
         :return:
         """
-        if os.path.exists("app"):
+        if os.path.exists(app_name):
             rprint(
                 "[bold red]:police_car_light:Error: App already exists. Please delete the app folder and try again["
                 "/bold red]"
