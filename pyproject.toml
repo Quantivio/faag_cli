@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "faag_cli"
-version = "0.0.4-dev"
+version = "faag_cli/__init__.py:__version__"
 description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhubdev@gmail.com>", "Devzone <devzonehq@gmail.com>"]
 license = "MIT"
@@ -31,6 +31,7 @@ ruff = "^0.0.257"
 isort = "^5.12.0"
 mypy = "^1.1.1"
 types-setuptools = "^67.6.0.5"
+python-semantic-release = "^7.33.2"
 
 [build-system]
 requires = [
@@ -75,3 +76,7 @@ combine-as-imports = true
 
 [tool.mypy]
 strict = true
+
+[tool.semantic_release]
+version_variable = "faag_cli/__init__.py:__version__"
+upload_to_pypi = false
