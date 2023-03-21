@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  deploy:
+  delete:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
@@ -15,5 +15,6 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           keep_minimum_runs: 0
+          retain_days: 0
 
 
