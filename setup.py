@@ -3,6 +3,8 @@
 
 from setuptools import find_packages, setup
 
+from faag_cli import __version__
+
 long_description: str
 
 with open("README.md", "r", encoding="utf-8") as readme_file:
@@ -17,7 +19,7 @@ classifiers = [
 
 setup(
     name="faag_cli",
-    version="0.0.4-dev",
+    version=__version__,
     description="Flask/FastAPI Architecture Application Generator",
     long_description=long_description,
     long_description_content_type="text/markdown",
