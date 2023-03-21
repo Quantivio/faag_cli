@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "faag_cli"
-version = "0.0.3-dev"
+version = "0.0.4-dev"
 description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhubdev@gmail.com>", "Devzone <devzonehq@gmail.com>"]
 license = "MIT"

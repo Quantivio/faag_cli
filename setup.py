@@ -17,14 +17,14 @@ classifiers = [
 
 setup(
     name="faag_cli",
-    version="0.0.3-dev",
+    version="0.0.4-dev",
     description="Flask/FastAPI Architecture Application Generator",
     long_description=long_description,
     long_description_content_type="text/markdown",
     author="Vetrichelvan",
     author_email="pythonhub.py@gmail.com",
     license="MIT",
-    url="https://github.com/pythonhubpy/FAAG",
+    url="https://github.com/DevzoneCommunity/faag_cli",
     packages=find_packages(exclude=["tests"]),
     install_package_data=True,
     install_requires=["jinja2"],

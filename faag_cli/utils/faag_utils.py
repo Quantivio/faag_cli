@@ -1,5 +1,5 @@
 """
-Description: This file contains the FaagUtils class which contains utility methods for the faag_cli cli.
+Description: This file contains the FaagUtils class which contains utility methods for the Faag CLI.
 """
 
 import os

@@ -18,7 +18,7 @@ pip install faag-cli
 
 # Usage
 
-Currently we support generation of apps only. Adding support for other features like adding models, routes, etc. is
+Currently, we support generation of apps only. Adding support for other features like adding models, routes, etc. is
 coming soon.
 
 ## To generate a FastAPI/Flask app

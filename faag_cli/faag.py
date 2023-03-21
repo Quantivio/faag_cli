@@ -1,5 +1,5 @@
 """
-Description: This file contains the main entry point for the faag_cli cli.
+Description: This file contains the main entry point for the Faag CLI.
 """
 
 import typer
@@ -32,7 +32,7 @@ def app_gen(
     ),
 ) -> None:
     """
-    FastAPI/Flask project generator with the best folder structure. Generate a new app using faag_cli cli.
+    FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.
     """
     FaagUtils.handle_app_folder_already_exists(app_name)  # Check if the app folder already exists
     app_type = app.value.lower()  # Get the app type
@@ -56,6 +56,14 @@ def app_gen(
 @typer_app.command(name="feature")
 def feature_gen() -> None:
     rprint("Feature generation is currently under development. Coming soon")
+
+
+@typer_app.command(name="version")
+def version() -> None:
+    """
+    Prints the version of Faag CLI
+    """
+    rprint("Faag CLI version 0.0.3-dev0")
 
 
 if __name__ == "__main__":
