@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "faag_cli"
-version = "faag_cli/__init__.py:__version__"
+version = "0.0.0"
 description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhubdev@gmail.com>", "Devzone <devzonehq@gmail.com>"]
 license = "MIT"
@@ -23,6 +23,7 @@ faag = "faag_cli.faag:typer_app"
 python = "^3.9"
 Jinja2 = "^3.1.2"
 typer = { extras = ["all"], version = ">=0.6.1,<0.8.0" }
+python-semantic-release = "^7.33.2"
 
 [tool.poetry.group.dev.dependencies]
 black = { extras = ["d"], version = "^23.1.0" }
@@ -31,7 +32,6 @@ ruff = "^0.0.257"
 isort = "^5.12.0"
 mypy = "^1.1.1"
 types-setuptools = "^67.6.0.5"
-python-semantic-release = "^7.33.2"
 
 [build-system]
 requires = [
