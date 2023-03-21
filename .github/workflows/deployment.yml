@@ -32,6 +32,7 @@ jobs:
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
+          git checkout main
           poetry run semantic-release publish
 
       - name: Publish to PyPI
