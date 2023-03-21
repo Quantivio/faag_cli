@@ -1,7 +1,7 @@
 # Adding setup file for backward compatability if needed
 # Will be removed in future versions
 
-from setuptools import setup, find_packages
+from setuptools import find_packages, setup
 
 long_description: str
 
@@ -16,7 +16,7 @@ classifiers = [
 ]
 
 setup(
-    name="faag_cli",
+    name="faag",
     version="0.0.1-dev",
     description="Flask/FastAPI Architecture Application Generator",
     long_description=long_description,

@@ -6,9 +6,9 @@ from time import sleep
 
 from rich.progress import Progress
 
-from faag_cli.constants.constants import FOLDERS_FILES
-from faag_cli.utils.faag_utils import FaagUtils
-from faag_cli.utils.templates_loader import templates_environment
+from faag.constants.constants import FOLDERS_FILES
+from faag.utils.faag_utils import FaagUtils
+from faag.utils.templates_loader import templates_environment
 
 
 class AppGenerator:

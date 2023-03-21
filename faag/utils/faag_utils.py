@@ -10,7 +10,7 @@ from typing import Any
 
 from rich import print as rprint
 
-from faag_cli.utils.templates_loader import templates_environment
+from faag.utils.templates_loader import templates_environment
 
 
 class FaagUtils:

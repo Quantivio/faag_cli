@@ -6,9 +6,9 @@ import typer
 from rich import print as rprint
 from typer import Option, Typer
 
-from faag_cli.constants.app_types import AppTypes
-from faag_cli.core.app_generator import AppGenerator
-from faag_cli.utils.faag_utils import FaagUtils
+from faag.constants.app_types import AppTypes
+from faag.core.app_generator import AppGenerator
+from faag.utils.faag_utils import FaagUtils
 
 typer_app = Typer()  # Create a Typer instance
 
