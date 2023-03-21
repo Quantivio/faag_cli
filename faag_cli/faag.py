@@ -21,12 +21,14 @@ def app_gen(
         "-t",
         help="Type of app to generate either flask or fast [default: fast]",
         show_choices=True,
+        prompt="What type of app do you want to generate?",
     ),
     app_name: str = Option(
         "sample_app",
         "--name",
         "-n",
         help="Name of the app to generate [default: sample_app]",
+        prompt="What is the name of your app? [default: sample_app]",
     ),
 ) -> None:
     """
