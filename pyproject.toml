@@ -17,7 +17,7 @@ classifiers = [
 ]
 
 [tool.poetry.scripts]
-faag = "faag_cli.faag:typer_app"
+faag = "faag.faag:typer_app"
 
 [tool.poetry.dependencies]
 python = "^3.9"
