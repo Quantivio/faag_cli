@@ -30,8 +30,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+          git config --local user.name "github-actions"
+          git config --local user.email "github-actions@github.com"
           poetry run semantic-release publish
 
       - name: Publish to PyPI
