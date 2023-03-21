@@ -5,7 +5,7 @@ description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhubdev@gmail.com>", "Devzone <devzonehq@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["FastAPI", "Flask", "SQLAlchemy", "Poetry", "Python", "CLI"]
+keywords = ["FastAPI", "Flask", "SQLAlchemy", "Poetry", "Python", "CLI", "API", "Application", "Generator", "Architecture", "Faag"]
 packages = [{ include = "faag" }]
 repository = "https://github.com/DevzoneCommunity/faag_cli"
 homepage = "https://github.com/DevzoneCommunity/faag_cli"
