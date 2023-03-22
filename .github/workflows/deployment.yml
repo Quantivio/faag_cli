@@ -3,10 +3,11 @@ name: "Deployment"
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: {}
+  workflow_dispatch: { }
 
 jobs:
   deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, '0.0.')  || !contains(github.event.head_commit.message, 'build:')
     name: Deploy
     runs-on: ubuntu-latest
     steps:
