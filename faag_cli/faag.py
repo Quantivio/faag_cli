@@ -63,7 +63,9 @@ def version() -> None:
     """
     Prints the version of Faag CLI
     """
-    rprint("Faag CLI version 0.0.3-dev0")
+    with open("VERSION", "rb") as version_file:
+        ver = version_file.read()
+    rprint(f"Faag CLI version f{ver['tool']['poetry']['version']}")
 
 
 if __name__ == "__main__":

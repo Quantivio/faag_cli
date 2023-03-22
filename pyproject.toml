@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "faag_cli"
-version = "0.0.2"
+version = "0.0.3"
 description = "Flask/FastAPI Architecture Application Generator"
 authors = ["Vetrichelvan <pythonhubdev@gmail.com>", "Devzone <devzonehq@gmail.com>"]
 license = "MIT"
@@ -78,7 +78,10 @@ combine-as-imports = true
 strict = true
 
 [tool.semantic_release]
-version_variable = "faag_cli/__init__.py:__version__"
+version_variable = [
+    "faag_cli/__init__.py:__version__",
+    "pyproject.toml:tool.poetry.version"
+]
 branch = "main"
 changelog_file = "CHANGELOG.md"
 build_command = "poetry build"

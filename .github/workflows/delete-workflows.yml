@@ -1,4 +1,4 @@
-name: "Deployment"
+name: "Delete workflow runs"
 
 on:
   push:
