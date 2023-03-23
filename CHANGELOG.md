@@ -3,6 +3,14 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.0 (2023-03-23)
+### Feature
+* Added version command via callback ([`12ed368`](https://github.com/DevzoneCommunity/faag_cli/commit/12ed368a19bcd5c2489a4fba058e7843bdf5eebd))
+
+### Fix
+* Removed condition from workflows other than deployment ([`aa89270`](https://github.com/DevzoneCommunity/faag_cli/commit/aa89270ee25a8f007b6b50641684c9db789e1edc))
+* Added other required files for development, fixed issues in flask app generation ([`6f0efe1`](https://github.com/DevzoneCommunity/faag_cli/commit/6f0efe18c5e2792081c8793a28c05c422132dabf))
+
 ## v0.0.7 (2023-03-22)
 
 
