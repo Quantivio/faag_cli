@@ -36,9 +36,9 @@ def app_gen(
     """
     FaagUtils.handle_app_folder_already_exists(app_name)  # Check if the app folder already exists
     app_type = app.value.lower()  # Get the app type
-    if not app_type:
-        rprint("[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]")
-        AppGenerator.gen("fast", app_name)
+
+    # Validate the app name
+    validated_app_name: str = FaagUtils.validate_app_name(app_name)
 
     # Check if the app type is valid
     if app_type and app_type not in ["flask", "fast"]:
@@ -50,7 +50,7 @@ def app_gen(
 
     if app_type and app_type in ["flask", "fast"]:
         # App generation starts here
-        AppGenerator.gen(app_type, app_name)
+        AppGenerator.gen(app_type, validated_app_name)
 
 
 @typer_app.command(name="feature")
