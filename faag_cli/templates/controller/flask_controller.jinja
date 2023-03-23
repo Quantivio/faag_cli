@@ -8,7 +8,7 @@ sample_router = Blueprint('main', __name__)
 @sample_router.route('/', methods=['GET'])
 def index():
    function_name = "Ping Private Route- Health Check"
-    logger.info(
+   logger.info(
         message=f"Enter - {function_name}",
         function_name=function_name,
     )

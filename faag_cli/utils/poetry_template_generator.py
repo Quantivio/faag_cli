@@ -12,8 +12,8 @@ def generate_poetry_template(app_name: str, app_type: str) -> dict:
     """
     poetry_template: Box = Box(POETRY_TEMPLATE)
     framework_packages: Box = Box(FRAMEWORK_PACKAGES)
-    poetry_template.name = app_name
-    poetry_template.description = f"{app_type} app generated using faag-cli"
+    poetry_template.tool.poetry.name = app_name
+    poetry_template.tool.poetry.description = f"{app_type} app generated using faag-cli"
     if app_type == "flask":
         poetry_template.tool.poetry.dependencies.update(framework_packages.flask)
     else:

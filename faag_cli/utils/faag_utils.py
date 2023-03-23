@@ -10,21 +10,28 @@ from typing import Any
 
 from rich import print as rprint
 
+from faag_cli.constants.constants import OTHER_FILES
 from faag_cli.utils.templates_loader import templates_environment
 
 
 class FaagUtils:
     @staticmethod
-    def add_gitignore(app_name: str) -> None:
+    def add_other_files(app_name: str, app_type: str) -> None:
         """
         This method adds a .gitignore file to the project.
         In future this function can be modified to add more config files like .env or .flaskenv to the project.
         :return:
         """
-        gitignore_template = templates_environment.get_template("gitignore.jinja")
-        gitignore_template_rendered = gitignore_template.render()
-        with open(f"{app_name}/.gitignore", "w", encoding="UTF-8") as gitignore:
-            gitignore.write(gitignore_template_rendered)
+        for file in OTHER_FILES.others:
+            template = templates_environment.get_template(f"{file}.jinja")
+            template_rendered = template.render({"app_name": app_name, "app_type": app_type})
+            with open(f"{app_name}/{file}", "w", encoding="UTF-8") as other_file:
+                other_file.write(template_rendered)
+        if app_type == "flask":
+            template = templates_environment.get_template(".flaskenv.jinja")
+            template_rendered = template.render()
+            with open(f"{app_name}/.flaskenv", "w", encoding="UTF-8") as other_file:
+                other_file.write(template_rendered)
 
     @staticmethod
     def handle_app_folder_already_exists(app_name: str) -> None:
@@ -48,7 +55,7 @@ class FaagUtils:
         :param app_name: The name of the app to be generated.
         :return: A validated app name that is safe to use.
         """
-        app_name_pattern: Pattern[Any] = re.compile(r".*[@!#$%^&*()<>?/\|}{~:].*")
+        app_name_pattern: Pattern[Any] = re.compile(r".*[@!#$%^&*()<>?/|}{~:].*")
         if app_name_pattern.match(app_name):
             rprint("[bold red]:police_car_light:Error: App name should not contain special characters[/bold red]")
             sys.exit(1)

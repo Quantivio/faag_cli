@@ -88,9 +88,10 @@ class AppGenerator:
     def gen(cls, app_type: str, app_name: str) -> None:
         # Progress bar for user experience
         with Progress() as progress:
-            # Since app doesn't does so much heavy lifting, we can use a simple progress bar and sleep for 0.5
-            # seconds to simulate the progress.
+            # Since app doesn't does so much heavy lifting, we can use a simple progress bar to simulate the progress.
+
             app_generation = progress.add_task(description="⌛️Generating....", total=100)
+
             # Setup Poetry
             progress.update(app_generation, advance=5)
             cls.setup_poetry(app_name, app_type)
@@ -105,5 +106,5 @@ class AppGenerator:
             progress.update(app_generation, advance=20)
 
             # Add other files like .gitignore, .env, .flaskenv
-            FaagUtils.add_gitignore(app_name)
+            FaagUtils.add_other_files(app_name, app_type)
             progress.update(app_generation, advance=20)
