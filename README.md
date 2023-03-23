@@ -28,10 +28,10 @@ generate with the `--type` flag. Default app will be generated with 'sample_app'
 name of the app with the `--name` flag.
 
 ```bash
- Usage: faag [OPTIONS] COMMAND [ARGS]...                                                                                                                                                                   
-                                                                                                                                                                                                           
- FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.                                                                                                        
-                                                                                                                                                                                                           
+ Usage: faag [OPTIONS] COMMAND [ARGS]...
+
+ FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI. 
+
 ╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
 │ --version             -v        Prints the version of Faag CLI                                                          │
 │ --install-completion            Install completion for the current shell.                                               │
