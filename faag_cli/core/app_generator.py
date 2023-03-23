@@ -2,11 +2,13 @@
 Description: This file contains the AppGenerator class which is responsible for generating the app.
 """
 import os
+import subprocess
 
 from rich.progress import Progress
 
 from faag_cli.constants.constants import FOLDERS_FILES
 from faag_cli.utils.faag_utils import FaagUtils
+from faag_cli.utils.poetry_template_generator import generate_poetry_template
 from faag_cli.utils.templates_loader import templates_environment
 
 
@@ -19,15 +21,12 @@ class AppGenerator:
         :return: None
         """
 
-        # Validate the app name
-        validated_app_name: str = FaagUtils.validate_app_name(app_name)
-
         # Create the app folder
         os.mkdir(f"{app_name}/app")
 
         # Generate the base __init__.py file for respective app via the templates loader
         app_template = templates_environment.get_template("/base/__init__.jinja")
-        app_template_rendered = app_template.render(app_name=validated_app_name, app_type=app_type)
+        app_template_rendered = app_template.render(app_name=app_name, app_type=app_type)
         with open(f"{app_name}/app/__init__.py", "w", encoding="UTF-8") as init_file:
             init_file.write(app_template_rendered)
 
@@ -74,27 +73,25 @@ class AppGenerator:
         This method sets up poetry for the project.
         :return: None
         """
+        os.mkdir(app_name)
+
         # Setup Poetry
-        os.system("poetry config virtualenvs.in-project false")
-        os.system(f"poetry new --src {app_name} -n -q")
-        os.system(f"poetry add pydantic -q -C {app_name}")
-        os.system("poetry add python-dotenv -q -C {app_name}")
-        os.system("poetry add --group=development ruff -q -C {app_name}")
-        os.system("poetry add --group=development pytest -q -C {app_name}")
-        if app_type == "fast":
-            os.system("poetry add fastapi -q -C {app_name}")
-            os.system("poetry add uvicorn -q -C {app_name}")
-        else:
-            os.system("poetry add flask -q -C {app_name}")
-        os.system(f"cd {app_name} && rm -rf src")
+        generated_template = generate_poetry_template(app_name, app_type)
+        with open(f"{app_name}/pyproject.toml", "w", encoding="UTF-8") as poetry_file:
+            poetry_file.write(generated_template)
+        if os.path.exists(app_name):
+            print("🎉Poetry setup complete!")
+
+        subprocess.run(f"cd {app_name} && poetry install", shell=True, capture_output=True)
 
     @classmethod
     def gen(cls, app_type: str, app_name: str) -> None:
         # Progress bar for user experience
         with Progress() as progress:
-            # Since app doesn't does so much heavy lifting, we can use a simple progress bar and sleep for 0.5
-            # seconds to simulate the progress.
+            # Since app doesn't does so much heavy lifting, we can use a simple progress bar to simulate the progress.
+
             app_generation = progress.add_task(description="⌛️Generating....", total=100)
+
             # Setup Poetry
             progress.update(app_generation, advance=5)
             cls.setup_poetry(app_name, app_type)
@@ -109,5 +106,5 @@ class AppGenerator:
             progress.update(app_generation, advance=20)
 
             # Add other files like .gitignore, .env, .flaskenv
-            FaagUtils.add_gitignore(app_name)
+            FaagUtils.add_other_files(app_name, app_type)
             progress.update(app_generation, advance=20)

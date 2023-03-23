@@ -10,7 +10,12 @@ from faag_cli.constants.app_types import AppTypes
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
 
-typer_app = Typer()  # Create a Typer instance
+__version__ = "0.0.7"
+
+typer_app = Typer(
+    name="Faag CLI",
+    help="FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.",
+)  # Create a Typer instance
 
 
 @typer_app.command(name="generate")
@@ -36,9 +41,9 @@ def app_gen(
     """
     FaagUtils.handle_app_folder_already_exists(app_name)  # Check if the app folder already exists
     app_type = app.value.lower()  # Get the app type
-    if not app_type:
-        rprint("[bold yellow]🧪️Warning: No app type was provided. Falling back to default type [fast][/bold yellow]")
-        AppGenerator.gen("fast", app_name)
+
+    # Validate the app name
+    validated_app_name: str = FaagUtils.validate_app_name(app_name)
 
     # Check if the app type is valid
     if app_type and app_type not in ["flask", "fast"]:
@@ -50,7 +55,7 @@ def app_gen(
 
     if app_type and app_type in ["flask", "fast"]:
         # App generation starts here
-        AppGenerator.gen(app_type, app_name)
+        AppGenerator.gen(app_type, validated_app_name)
 
 
 @typer_app.command(name="feature")
@@ -58,14 +63,27 @@ def feature_gen() -> None:
     rprint("Feature generation is currently under development. Coming soon")
 
 
-@typer_app.command(name="version")
-def version() -> None:
+def version_callback(value: bool):
+    if value:
+        rprint(f"Faag CLI version: [bold green]{__version__}[/bold green]")
+        raise typer.Exit()
+
+
+@typer_app.callback()
+def version(
+    version_arg: bool = typer.Option(
+        False,
+        "--version",
+        "-v",
+        help="Prints the version of Faag CLI",
+        callback=version_callback,
+        is_eager=True,
+    ),
+) -> None:
     """
     Prints the version of Faag CLI
     """
-    with open("VERSION", "rb") as version_file:
-        ver = version_file.read()
-    rprint(f"Faag CLI version f{ver['tool']['poetry']['version']}")
+    pass
 
 
 if __name__ == "__main__":
