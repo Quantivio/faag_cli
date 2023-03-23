@@ -45,3 +45,28 @@ FOLDERS_FILES = {
         "sample_dao",
     ],
 }
+
+PACKAGES = {
+    "main": [
+        "pydantic",
+        "python-dotenv",
+    ],
+    "dev": [
+        "ruff",
+        "isort",
+        "pytest",
+        "pytest-cov",
+        "'black[d]'",
+    ],
+}
+
+FRAMEWORK_PACKAGES = {
+    "fast": [
+        "fastapi",
+        "uvicorn",
+    ],
+    "flask": [
+        "flask",
+        "gunicorn",
+    ],
+}

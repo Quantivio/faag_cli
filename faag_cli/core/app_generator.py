@@ -5,7 +5,7 @@ import os
 
 from rich.progress import Progress
 
-from faag_cli.constants.constants import FOLDERS_FILES
+from faag_cli.constants.constants import FOLDERS_FILES, FRAMEWORK_PACKAGES, PACKAGES
 from faag_cli.utils.faag_utils import FaagUtils
 from faag_cli.utils.templates_loader import templates_environment
 
@@ -77,15 +77,19 @@ class AppGenerator:
         # Setup Poetry
         os.system("poetry config virtualenvs.in-project false")
         os.system(f"poetry new --src {app_name} -n -q")
-        os.system(f"poetry add pydantic -q -C {app_name}")
-        os.system("poetry add python-dotenv -q -C {app_name}")
-        os.system("poetry add --group=development ruff -q -C {app_name}")
-        os.system("poetry add --group=development pytest -q -C {app_name}")
-        if app_type == "fast":
-            os.system("poetry add fastapi -q -C {app_name}")
-            os.system("poetry add uvicorn -q -C {app_name}")
-        else:
-            os.system("poetry add flask -q -C {app_name}")
+
+        # Add packages
+        for key, value in PACKAGES.items():
+            if key == "main":
+                for package in value:
+                    os.system(f"poetry add {package} -q -C {app_name}")
+            if key == "dev":
+                for package in value:
+                    os.system(f"poetry add --group=development {package} -q -C {app_name}")
+
+        for package in FRAMEWORK_PACKAGES[app_type]:
+            os.system(f"poetry add {package} -q -C {app_name}")
+
         os.system(f"cd {app_name} && rm -rf src")
 
     @classmethod
