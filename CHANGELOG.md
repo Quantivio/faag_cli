@@ -3,6 +3,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.1.1 (2023-03-23)
+### Documentation
+* Updated README for latest commands ([`1b356d1`](https://github.com/DevzoneCommunity/faag_cli/commit/1b356d109e776d63649ef4c19dcd007e057cb781))
+
 ## v0.1.0 (2023-03-23)
 ### Feature
 * Added version command via callback ([`12ed368`](https://github.com/DevzoneCommunity/faag_cli/commit/12ed368a19bcd5c2489a4fba058e7843bdf5eebd))

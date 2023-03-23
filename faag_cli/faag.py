@@ -10,7 +10,7 @@ from faag_cli.constants.app_types import AppTypes
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 typer_app = Typer(
     name="Faag CLI",
