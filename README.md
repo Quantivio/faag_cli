@@ -23,22 +23,26 @@ coming soon.
 
 ## To generate a FastAPI/Flask app
 
-Faag generate will automatically generate a FastAPI by default. You can also specify the type of app you want to
+```faag generate``` will automatically generate a Fast App by default. You can also specify the type of app you want to
 generate with the `--type` flag. Default app will be generated with 'sample_app' as the name. You can also specify the
 name of the app with the `--name` flag.
 
 ```bash
-Usage: faag generate --help
+ Usage: faag [OPTIONS] COMMAND [ARGS]...                                                                                                                                                                   
+                                                                                                                                                                                                           
+ FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.                                                                                                        
+                                                                                                                                                                                                           
+╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --version             -v        Prints the version of Faag CLI                                                          │
+│ --install-completion            Install completion for the current shell.                                               │
+│ --show-completion               Show completion for the current shell, to copy it or customize the installation.        │
+│ --help                          Show this message and exit.                                                             │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
-  FastAPI/Flask project generator with the best folder structure. Generate a new FastAPI/Flask project
- 
-╭─ Options ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --type                 -t      TEXT  Type of that should be generated. Default type is fast_api. Valid Options are: [fast_api, flask] [default: fast_api        |
-│ --name                 -n      TEXT  Name of the app [default: sampel_app]                                                                                      |
-│ --install-completion                 Install completion for the current shell.                                                                                  |
-│ --show-completion                    Show completion for the current shell, to copy it or customize the installation.                                           |
-│ --help                               Show this message and exit.                                                                                                |
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│                                                                                                                         │
+│ generate          FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI     │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 ```
 
 1. Help
@@ -46,15 +50,20 @@ Usage: faag generate --help
     faag --help
     ```
 
-2. Generate a FastAPI app 
+2. Generate a FastAPI app
     ```bash
    faag generate
     ```
 
 3. Generate a FastAPI/Flask App with custom app name
     ```bash
-   faag --name myapp
-   faag -n myapp
+   faag generate --type fast --name fast_app
+   faag generate -t flask -n flask_app
+    ```
+
+4. View options for generating a FastAPI/Flask app
+    ```bash
+   faag generate --help
     ```
 
 # Setup for development
