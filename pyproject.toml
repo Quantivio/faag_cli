@@ -78,7 +78,7 @@ strict = true
 
 [tool.semantic_release]
 version_variable = [
-    "faag_cli/__init__.py:__version__",
+    "faag_cli/faag.py:__version__",
     "pyproject.toml:version"
 ]
 branch = "main"

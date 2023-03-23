@@ -10,7 +10,12 @@ from faag_cli.constants.app_types import AppTypes
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
 
-typer_app = Typer()  # Create a Typer instance
+__version__ = "0.0.7"
+
+typer_app = Typer(
+    name="Faag CLI",
+    help="FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.",
+)  # Create a Typer instance
 
 
 @typer_app.command(name="generate")
@@ -58,14 +63,27 @@ def feature_gen() -> None:
     rprint("Feature generation is currently under development. Coming soon")
 
 
-@typer_app.command(name="version")
-def version() -> None:
+def version_callback(value: bool):
+    if value:
+        rprint(f"Faag CLI version: [bold green]{__version__}[/bold green]")
+        raise typer.Exit()
+
+
+@typer_app.callback()
+def version(
+    version_arg: bool = typer.Option(
+        False,
+        "--version",
+        "-v",
+        help="Prints the version of Faag CLI",
+        callback=version_callback,
+        is_eager=True,
+    ),
+) -> None:
     """
     Prints the version of Faag CLI
     """
-    with open("VERSION", "rb") as version_file:
-        ver = version_file.read()
-    rprint(f"Faag CLI version f{ver['tool']['poetry']['version']}")
+    pass
 
 
 if __name__ == "__main__":
