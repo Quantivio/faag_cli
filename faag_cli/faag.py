@@ -6,7 +6,7 @@ import typer
 from rich import print as rprint
 from typer import Option, Typer
 
-from faag_cli.constants.app_types import AppTypes
+from faag_cli.constants.app_enums import AppTypes, FormatterTypes, LinterTypes
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
 
@@ -35,6 +35,22 @@ def app_gen(
         help="Name of the app to generate [default: sample_app]",
         prompt="What is the name of your app? [default: sample_app]",
     ),
+    linter: LinterTypes = Option(
+        LinterTypes.RUFF.value,
+        "--linter",
+        "-l",
+        help="Linter to use for the app [default: ruff]",
+        show_choices=True,
+        prompt="What linter do you want to use?",
+    ),
+    formatter: FormatterTypes = Option(
+        FormatterTypes.BLACK.value,
+        "--formatter",
+        "-f",
+        help="Formatter to use for the app [default: black]",
+        show_choices=True,
+        prompt="What formatter do you want to use?",
+    ),
 ) -> None:
     """
     FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.
@@ -55,7 +71,13 @@ def app_gen(
 
     if app_type and app_type in ["flask", "fast"]:
         # App generation starts here
-        AppGenerator.gen(app_type, validated_app_name)
+        app_generator: AppGenerator = AppGenerator(
+            app_type=app_type,
+            app_name=validated_app_name,
+            linter=linter.value.lower(),
+            formatter=formatter.value.lower(),
+        )
+        app_generator.gen()
 
 
 @typer_app.command(name="feature")

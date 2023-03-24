@@ -89,52 +89,17 @@ POETRY_TEMPLATE = Box(
                 "group": {
                     "dev": {
                         "dependencies": {
-                            "black": "23.1.0",
                             "pytest": "7.2.2",
                             "pytest-cov": "4.0.0",
                             "pre-commit": "^3.2.0",
-                            "ruff": "^0.0.257",
                             "isort": "^5.12.0",
                             "mypy": "^1.1.1",
                         }
                     }
                 },
             },
-            "black": {
-                "line-length": 120,
-            },
             "isort": {
                 "profile": "black",
-            },
-            "ruff": {
-                "src": ["."],
-                "target-version": "py311",
-                "fix": True,
-                "show-source": True,
-                "line-length": 120,
-                "select": [
-                    "E",
-                    "F",
-                    "N801",
-                    "N802",
-                    "N803",
-                    "N805",
-                    "N806",
-                ],
-                "flake8-quotes": {
-                    "inline-quotes": "double",
-                    "multiline-quotes": "double",
-                    "docstring-quotes": "double",
-                },
-                "flake8-tidy-imports": {
-                    "ban-relative-imports": "all",
-                },
-                "flake8-type-checking": {
-                    "strict": True,
-                },
-                "isort": {
-                    "combine-as-imports": True,
-                },
             },
             "mypy": {
                 "strict": True,

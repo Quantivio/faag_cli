@@ -10,3 +10,14 @@ from enum import Enum
 class AppTypes(Enum):
     FLASK = "flask"
     FAST = "fast"
+
+
+class LinterTypes(Enum):
+    FLAKE8 = "flake8"
+    PYLINT = "pylint"
+    RUFF = "ruff"
+
+
+class FormatterTypes(Enum):
+    BLACK = "black"
+    AUTOPEP8 = "autopep8"
