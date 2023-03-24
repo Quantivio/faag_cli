@@ -3,6 +3,15 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.0 (2023-03-24)
+### Feature
+* Added pylint as an additional linter option ([`54f5784`](https://github.com/DevzoneCommunity/faag_cli/commit/54f5784485c92e13e39288a76083ce1aba36dc81))
+
+### Fix
+* Added support for autopep8 fromatter along with config ([`4dbff12`](https://github.com/DevzoneCommunity/faag_cli/commit/4dbff127c46e073276534d4081e80cd24670e162))
+* Added flake8 package in pyproject deps ([`2cf2fd9`](https://github.com/DevzoneCommunity/faag_cli/commit/2cf2fd973156c50eca5317cb045b3c52a4bafb8f))
+* Fixed issue in app generation ([`82b91f0`](https://github.com/DevzoneCommunity/faag_cli/commit/82b91f09526d982fcd9ec7a1b0549a1493a9730e))
+
 ## v0.1.2 (2023-03-23)
 ### Documentation
 * Updated README for latest commands ([`affddb9`](https://github.com/DevzoneCommunity/faag_cli/commit/affddb9df24a45f99e36bd6f12df8d6068f567c6))
