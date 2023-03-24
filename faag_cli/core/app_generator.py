@@ -85,7 +85,7 @@ class AppGenerator:
         subprocess.run(f"cd {app_name} && poetry install", shell=True, capture_output=True)
 
     @classmethod
-    def gen(cls, app_type: str, app_name: str) -> None:
+    def gen(cls, app_type: str, app_name: str, linter: str) -> None:
         # Progress bar for user experience
         with Progress() as progress:
             # Since app doesn't does so much heavy lifting, we can use a simple progress bar to simulate the progress.
