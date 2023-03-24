@@ -7,7 +7,7 @@ PYLINT_RULES = {
             "jobs": 1,
             "limit-inference-results": 100,
             "persistent": True,
-            "py-version": "3.9",
+            "py-version": "3.11",
             "suggestion-mode": True,
         },
         "basic": {

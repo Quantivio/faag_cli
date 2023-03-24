@@ -24,6 +24,12 @@ def generate_poetry_template(app_name: str, app_type: str, linter: str) -> str:
                 "pylint": "^2.17.1",
             }
         )
+    if linter == "flake8":
+        poetry_template.tool.poetry.group.dev.dependencies.update(
+            {
+                "flake8": "^6.0.0",
+            }
+        )
     else:
         poetry_template.tool.update(RUFF_RULES)
         poetry_template.tool.poetry.group.dev.dependencies.update(
