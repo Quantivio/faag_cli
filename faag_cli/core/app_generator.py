@@ -14,7 +14,7 @@ from faag_cli.utils.templates_loader import templates_environment
 
 
 class AppGenerator:
-    def __init__(self, app_name: str, app_type: str, linter: str) -> None:
+    def __init__(self, app_name: str, app_type: str, linter: str, formatter: str) -> None:
         """
         :param app_name: The name of the app to be generated.
         :param app_type: The type of the app to be generated.
@@ -23,6 +23,7 @@ class AppGenerator:
         self.app_name = app_name
         self.app_type = app_type
         self.linter = linter
+        self.formatter = formatter
 
     def __generate_app(self) -> None:
         # Create the app folder
@@ -77,7 +78,12 @@ class AppGenerator:
         os.mkdir(self.app_name)
 
         # Setup Poetry
-        generated_template = generate_poetry_template(self.app_name, self.app_type, self.linter)
+        generated_template = generate_poetry_template(
+            self.app_name,
+            self.app_type,
+            self.linter,
+            self.formatter,
+        )
         with open(f"{self.app_name}/pyproject.toml", "w", encoding="UTF-8") as poetry_file:
             poetry_file.write(generated_template)
         subprocess.run(f"cd {self.app_name} && poetry install", shell=True, capture_output=True)

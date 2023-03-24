@@ -89,7 +89,6 @@ POETRY_TEMPLATE = Box(
                 "group": {
                     "dev": {
                         "dependencies": {
-                            "black": "23.1.0",
                             "pytest": "7.2.2",
                             "pytest-cov": "4.0.0",
                             "pre-commit": "^3.2.0",
@@ -98,9 +97,6 @@ POETRY_TEMPLATE = Box(
                         }
                     }
                 },
-            },
-            "black": {
-                "line-length": 120,
             },
             "isort": {
                 "profile": "black",

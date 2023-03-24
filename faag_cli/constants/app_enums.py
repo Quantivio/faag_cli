@@ -20,3 +20,4 @@ class LinterTypes(Enum):
 
 class FormatterTypes(Enum):
     BLACK = "black"
+    AUTOPEP8 = "autopep8"
