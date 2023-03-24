@@ -21,14 +21,14 @@ def generate_poetry_template(app_name: str, app_type: str, linter: str) -> str:
         poetry_template.tool.update(PYLINT_RULES)
         poetry_template.tool.poetry.group.dev.dependencies.update(
             {
-                "ruff": "^0.0.257",
+                "pylint": "^2.17.1",
             }
         )
     else:
         poetry_template.tool.update(RUFF_RULES)
         poetry_template.tool.poetry.group.dev.dependencies.update(
             {
-                "pylint": "^2.17.1",
+                "ruff": "^0.0.257",
             }
         )
     if app_type == "flask":

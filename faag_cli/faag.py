@@ -63,11 +63,12 @@ def app_gen(
 
     if app_type and app_type in ["flask", "fast"]:
         # App generation starts here
-        AppGenerator.gen(
-            app_type,
-            validated_app_name,
-            linter.value.lower(),
+        app_generator: AppGenerator = AppGenerator(
+            app_type=app_type,
+            app_name=validated_app_name,
+            linter=linter.value.lower(),
         )
+        app_generator.gen()
 
 
 @typer_app.command(name="feature")
