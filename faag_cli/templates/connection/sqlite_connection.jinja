@@ -1,0 +1,12 @@
+from sqlite3 import connect, Row
+
+
+class Connection:
+    """
+    This class is used to connect to the database and run any other connection related tasks.
+    """
+
+    def __init__(self):
+        self.connection = connect('faag_cli.db')
+        self.connection.row_factory = Row
+        self.cursor = self.connection.cursor()  # cursor object

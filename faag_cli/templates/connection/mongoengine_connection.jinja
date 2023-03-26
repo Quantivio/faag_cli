@@ -1,0 +1,33 @@
+import certifi
+from mongoengine import connect
+from pymongo.errors import ConnectionFailure
+
+from app.utils import logger
+
+
+class Connection:
+    def __init__(self, database_name: str, host: str):
+        self.host = host
+        self.database_name = database_name
+
+    def connect(self) -> None:
+        try:
+            logger.info(
+                message="Connecting to MongoDB....",
+                function_name="Connect",
+            )
+            connect(
+                db=self.database_name,
+                host=self.host,
+                uuidRepresentation="standard",
+                tlsCAFile=certifi.where(),
+            )
+            logger.info(
+                message="Connected to MongoDB",
+                function_name="Connect",
+            )
+        except ConnectionFailure as connection_failure:
+            logger.critical(
+                message="Connection Error: " + str(connection_failure),
+                function_name="Connect",
+            )

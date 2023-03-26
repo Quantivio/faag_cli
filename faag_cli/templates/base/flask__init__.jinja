@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_pydantic import validate
 from starlette.responses import JSONResponse
 
 from app.config import Constants
@@ -21,7 +20,6 @@ def create_flask_app() -> Flask:
 
 
 @{{app_name}}.route(f"{Constants.BASE_SLUG}/public/ping", methods=["GET"])
-@validate()
 def ping():
     function_name = "Ping - Health Check"
     logger.info(

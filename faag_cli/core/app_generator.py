@@ -14,7 +14,15 @@ from faag_cli.utils.templates_loader import templates_environment
 
 
 class AppGenerator:
-    def __init__(self, app_name: str, app_type: str, linter: str, formatter: str) -> None:
+    def __init__(
+        self,
+        app_name: str,
+        app_type: str,
+        linter: str,
+        formatter: str,
+        odm_orm_support: bool,
+        odm_orm_type: str,
+    ) -> None:
         """
         :param app_name: The name of the app to be generated.
         :param app_type: The type of the app to be generated.
@@ -24,6 +32,8 @@ class AppGenerator:
         self.app_type = app_type
         self.linter = linter
         self.formatter = formatter
+        self.odm_orm_support = odm_orm_support
+        self.odm_orm_type = odm_orm_type
 
     def __generate_app(self) -> None:
         # Create the app folder
@@ -56,7 +66,13 @@ class AppGenerator:
                             template = templates_environment.get_template(f"/schemas/{folder}/{folder + file}.jinja")
                         else:
                             template = templates_environment.get_template(f"/schemas/{folder}/{file}.jinja")
-                        rendered_template = template.render(app_type=self.app_type)
+                        rendered_template = template.render(
+                            {
+                                "app_type": self.app_type,
+                                "orm_odm_type": self.odm_orm_type,
+                                "orm_odm_support": self.odm_orm_support,
+                            }
+                        )
                         gen_file.write(rendered_template)
             else:
                 if folder != "schemas":
@@ -67,7 +83,13 @@ class AppGenerator:
                             template = templates_environment.get_template(f"/{folder}/{folder + file}.jinja")
                         else:
                             template = templates_environment.get_template(f"/{folder}/{file}.jinja")
-                        rendered_template = template.render(app_type=self.app_type)
+                        rendered_template = template.render(
+                            {
+                                "app_type": self.app_type,
+                                "orm_odm_type": self.odm_orm_type,
+                                "orm_odm_support": self.odm_orm_support,
+                            }
+                        )
                         gen_file.write(rendered_template)
 
     def setup_poetry(self) -> None:
@@ -83,6 +105,8 @@ class AppGenerator:
             self.app_type,
             self.linter,
             self.formatter,
+            self.odm_orm_support,
+            self.odm_orm_type,
         )
         with open(f"{self.app_name}/pyproject.toml", "w", encoding="UTF-8") as poetry_file:
             poetry_file.write(generated_template)

@@ -21,3 +21,11 @@ class LinterTypes(Enum):
 class FormatterTypes(Enum):
     BLACK = "black"
     AUTOPEP8 = "autopep8"
+
+
+class ORMODMTypes(Enum):
+    SQLALCHEMY = "sqlalchemy"
+    MONGOENGINE = "mongoengine"
+    # SQLMODEL = "sqlmodel"
+    # TORTOISE = "tortoise"
+    # BEANIE = "beanie"

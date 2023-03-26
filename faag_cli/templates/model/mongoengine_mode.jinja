@@ -1,0 +1,9 @@
+from mongoengine import Document, StringField, EmailField
+
+class UserModel(Document):
+    name: str = StringField(required=True, max_length=100)
+    email: str = EmailField(required=True)
+
+    meta = {
+        'collection': 'Users'
+    }

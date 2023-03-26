@@ -1,20 +1,33 @@
 # All your database connections related code can be added here
-
-from sqlite3 import connect, Row
-
-"""
-Here we are connecting to SQLite database. We are using sqlite3 module to connect to the database.
-Other database can also be used. Support for other databases will be added in future along with ORM and ODM support.
-"""
+{%- if orm_odm_support == True %}
+{%- if orm_odm_type == "sqlalchemy" and app_type == "fast"%}
+from sqlalchemy.ext.declarative import declarative_base
+{% include "/connection/sqlalchemy_connection.jinja" %}
 
 
-class Connection:
-    """
-    This class is used to connect to the database and run any other connection related tasks.
-    """
+Base = declarative_base()
+{% endif %}
+{%- if orm_odm_type == "sqlalchemy" and app_type == "flask"%}
+from flask_sqlalchemy import SQLAlchemy
 
-    def __init__(self):
-        self.connection = connect('faag_cli.db')
-        self.connection.row_factory = Row
-        self.cursor = self.connection.cursor()  # cursor object
+
+database = SQLAlchemy()
+{% endif %}
+
+
+{%- if orm_odm_type == "mongoengine" and app_type == "flask"%}
+from flask_mongoengine import MongoEngine
+
+
+db = MongoEngine()
+{% endif %}
+
+{%- if orm_odm_type == "mongoengine" and app_type == "fast"%}
+{% include "/connection/mongoengine_connection.jinja" %}
+{% endif %}
+{% endif %}
+
+{%- if orm_odm_support == False %}
+{% include "/connection/sqlite_connection.jinja" %}
+{% endif %}
 

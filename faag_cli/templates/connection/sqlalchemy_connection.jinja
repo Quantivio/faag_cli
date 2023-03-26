@@ -1,0 +1,18 @@
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+
+class Connection:
+
+    def __init__(self):
+        self.url = 'sqlite:///./database.db'
+        self.engine = create_engine(self.url, connect_args={"check_same_thread": False})
+        self.session = sessionmaker(autocommit=False, autoflush=False, bind=self.engine)
+
+
+def get_db(self):
+    db = self.session()
+    try:
+        yield db
+    finally:
+        db.close()

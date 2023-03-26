@@ -6,7 +6,12 @@ import typer
 from rich import print as rprint
 from typer import Option, Typer
 
-from faag_cli.constants.app_enums import AppTypes, FormatterTypes, LinterTypes
+from faag_cli.constants.app_enums import (
+    AppTypes,
+    FormatterTypes,
+    LinterTypes,
+    ORMODMTypes,
+)
 from faag_cli.core.app_generator import AppGenerator
 from faag_cli.utils.faag_utils import FaagUtils
 
@@ -51,6 +56,21 @@ def app_gen(
         show_choices=True,
         prompt="What formatter do you want to use?",
     ),
+    odm_orm_support: bool = Option(
+        False,
+        "--odm-orm-support",
+        "-o",
+        help="Add support for ODM/ORM [default: False]",
+        prompt="Do you want to add support for ODM/ORM?",
+    ),
+    odm_orm_type: ORMODMTypes = Option(
+        ORMODMTypes.SQLALCHEMY.value,
+        "--odm-orm-type",
+        "-ot",
+        help="Type of ODM/ORM to use [default: sqlalchemy]",
+        show_choices=True,
+        prompt="What type of ODM/ORM do you want to use?",
+    ),
 ) -> None:
     """
     FastAPI/Flask project generator with the best folder structure. Generate a new app using Faag CLI.
@@ -76,6 +96,8 @@ def app_gen(
             app_name=validated_app_name,
             linter=linter.value.lower(),
             formatter=formatter.value.lower(),
+            odm_orm_support=odm_orm_support,
+            odm_orm_type=odm_orm_type.value.lower(),
         )
         app_generator.gen()
 

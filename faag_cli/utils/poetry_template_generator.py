@@ -11,6 +11,8 @@ def generate_poetry_template(
     app_type: str,
     linter: str,
     formatter: str,
+    odm_orm_support: bool,
+    odm_orm_type: str,
 ) -> str:
     """
     This method generates the poetry template for the project.
@@ -30,6 +32,9 @@ def generate_poetry_template(
         poetry_template.tool.poetry.dependencies.update(framework_packages.flask)
     else:
         poetry_template.tool.poetry.dependencies.update(framework_packages.fast)
+
+    if odm_orm_support:
+        poetry_template.tool.poetry.dependencies.update({odm_orm_type: "*"})
 
     # Add the linter to the poetry template.
     if linter == "pylint":
