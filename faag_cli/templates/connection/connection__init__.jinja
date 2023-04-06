@@ -19,7 +19,7 @@ database = SQLAlchemy()
 from flask_mongoengine import MongoEngine
 
 
-db = MongoEngine()
+database = MongoEngine()
 {% endif %}
 
 {%- if orm_odm_type == "mongoengine" and app_type == "fast"%}
