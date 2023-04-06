@@ -3,6 +3,10 @@
 
 <!--next-version-placeholder-->
 
+## v0.2.1 (2023-04-06)
+### Fix
+* Updated packages to latest version ([`b320fcd`](https://github.com/DevzoneCommunity/faag_cli/commit/b320fcd1d78a44b71f8bf8b5274f34f140876b3d))
+
 ## v0.2.0 (2023-03-24)
 ### Feature
 * Added pylint as an additional linter option ([`54f5784`](https://github.com/DevzoneCommunity/faag_cli/commit/54f5784485c92e13e39288a76083ce1aba36dc81))
